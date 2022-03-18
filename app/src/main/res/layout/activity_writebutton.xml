@@ -18,35 +18,47 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/art_details" />
 
-    <RadioButton
-        android:id="@+id/byimages"
+    <CheckBox
+        android:id="@+id/drama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="By Images"
-        android:textColor="#FF6D00"
-        android:textColorHint="#090909"
+        android:text="Drama"
+        android:textColor="#FF9800"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.627"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.767" />
+        app:layout_constraintVertical_bias="0.6" />
 
-    <RadioButton
-        android:id="@+id/texttyping"
+    <CheckBox
+        android:id="@+id/scientificfacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text typing"
-        android:textColor="#FF6D00"
-        android:textColorHint="#0B0A0A"
+        android:text="Scientific Facts"
+        android:textColor="#FF9800"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769" />
+        app:layout_constraintVertical_bias="0.463" />
+
+    <CheckBox
+        android:id="@+id/opinions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opinions"
+        android:textColor="#FF9800"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/textView4"
@@ -62,51 +74,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.678" />
-
-    <RadioButton
-        android:id="@+id/drama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Drama"
-        android:textColor="#FF6D00"
-        android:textColorHint="#090808"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601" />
-
-    <RadioButton
-        android:id="@+id/opinions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Opinions"
-        android:textColor="#FF6D00"
-        android:textColorHint="#0E0E0E"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
-
-    <RadioButton
-        android:id="@+id/scientificfacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scientific facts"
-        android:textColor="#FF6D00"
-        android:textColorHint="#100E0E"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.849"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.463" />
 
     <EditText
         android:id="@+id/authorname"
@@ -159,21 +126,6 @@
         app:layout_constraintTop_toTopOf="@+id/imageView8"
         app:layout_constraintVertical_bias="0.149" />
 
-    <RadioButton
-        android:id="@+id/fiction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fiction"
-        android:textColor="#FF6D00"
-        android:textColorHint="#100F0F"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.463" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -202,5 +154,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.934" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="326dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.823">
+
+        <RadioButton
+            android:id="@+id/texttyping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="check"
+            android:text="Text typing"
+            android:textColor="#FF6D00"
+            android:textColorHint="#0B0A0A"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+            app:layout_constraintHorizontal_bias="0.142"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.769" />
+
+        <RadioButton
+            android:id="@+id/byimages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="check"
+            android:text="By images"
+            android:textColor="#FF6D00"
+            android:textColorHint="#0B0A0A"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+            app:layout_constraintHorizontal_bias="0.142"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.769" />
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/fiction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fiction"
+        android:textColor="#FF9800"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.463" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
