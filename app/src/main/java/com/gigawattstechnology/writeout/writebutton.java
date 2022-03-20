@@ -24,11 +24,10 @@ public class writebutton extends AppCompatActivity {
 EditText articlename,date,authorname;
 CheckBox fiction,opinions,scientificfacts,drama;
 Button create;
-boolean f,o,sf,d;
 RadioGroup radioGroup;
 RadioButton radioButton;
 MediaPlayer player;
-    String scategory=" ",sarticlename=" ",sdate=" ",sauthorname=" ",sfiction=" ",sopinions=" ",sscientificfacts=" ",sdrama=" ",discission=" ";
+String scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission=" ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +40,6 @@ MediaPlayer player;
         scientificfacts=findViewById(R.id.scientificfacts);
         drama=findViewById(R.id.drama);
         create=findViewById(R.id.create);
-        f=fiction.isChecked();
-        o=opinions.isChecked();
-        sf=scientificfacts.isChecked();
-        d=drama.isChecked();
         radioGroup=findViewById(R.id.radiogroup);
 
         create.setOnClickListener(new View.OnClickListener() {
@@ -53,19 +48,18 @@ MediaPlayer player;
                 sarticlename=articlename.getText().toString();
                 sdate=date.getText().toString();
                 sauthorname=authorname.getText().toString();
-                if(f){
-                    sfiction="Fiction";
+                if(fiction.isChecked()){
+                    scategory=scategory+"Fiction ";
                 }
-                if(o){
-                    sopinions="Opinions";
+                if(opinions.isChecked()){
+                    scategory=scategory+"Opinions ";
                 }
-                if(sf){
-                    sscientificfacts="Scientific facts";
+                if(scientificfacts.isChecked()){
+                    scategory=scategory+"Scientific Facts ";
                 }
-                if(d){
-                    sdrama="Drama";
+                if(drama.isChecked()){
+                    scategory=scategory+"Drama ";
                 }
-                scategory=sfiction+""+sopinions+""+sdrama+""+sscientificfacts+" ";
                 if(discission.equals("Text typing"))
                 {
                     Intent i=new Intent(writebutton.this,texttyping.class);

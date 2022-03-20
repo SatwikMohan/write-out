@@ -16,12 +16,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class signup extends AppCompatActivity {
 EditText Name,Email,SetPassword,ConfirmPassword;
 Button Register;
 FirebaseAuth fAuth;
     ProgressBar progress;
+    //StorageReference storageReference;
+    //DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,8 @@ FirebaseAuth fAuth;
         Register=findViewById(R.id.register);
         fAuth=FirebaseAuth.getInstance();
         progress=findViewById(R.id.progressBarup);
+        //storageReference= FirebaseStorage.getInstance().getReference();
+        //databaseReference= FirebaseDatabase.getInstance().getReference("authenticate");
         if(fAuth.getCurrentUser()!=null)
         {
             startActivity(new Intent(getApplicationContext(),writeout.class));
@@ -45,6 +53,7 @@ FirebaseAuth fAuth;
                 String email=Email.getText().toString().trim();
                 String password=SetPassword.getText().toString().trim();
                 String cpassword=ConfirmPassword.getText().toString().trim();
+                //String authenticate=name+email;
                 if(password.equals(cpassword)==false)
                 {
                     SetPassword.setError("* Password and Confirm Password are not same");

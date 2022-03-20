@@ -29,21 +29,24 @@ public class PageRecyclerAdapter extends RecyclerView.Adapter<PageRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull ProgrammingViewHolder holder, int position) {
         String title=data[position];
-        holder.pagen.setText(title);
-        holder.page.setImageResource(R.drawable.page1);
+        holder.pagen.setImageResource(R.drawable.doc);
+        holder.page.setImageResource(R.drawable.tabart);
+        holder.articletitle.setText(title);
     }
 
     @Override
     public int getItemCount() {
         return data.length;
     }
+
     public class ProgrammingViewHolder extends RecyclerView.ViewHolder{
-        ImageView page;
-        TextView pagen;
+        ImageView page,pagen;
+        TextView articletitle;
         public ProgrammingViewHolder(@NonNull View itemView) {
             super(itemView);
-            page=itemView.findViewById(R.id.page);
-            pagen=itemView.findViewById(R.id.pagenumber);
+            page=itemView.findViewById(R.id.tabart);
+            pagen=itemView.findViewById(R.id.tabicon);
+            articletitle=itemView.findViewById(R.id.articletitle);
         }
     }
 }

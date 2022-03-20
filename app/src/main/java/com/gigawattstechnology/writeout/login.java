@@ -45,6 +45,8 @@ TextView resetpassword;
                 String name=Name.getText().toString().trim();
                 String email=Email.getText().toString().trim();
                 String password=Password.getText().toString().trim();
+                //Intent i=new Intent(login.this,texttyping.class);
+               // i.putExtra("useremail",Email.getText().toString().trim().substring(0,Email.getText().toString().trim().indexOf("@")));
                 if(TextUtils.isEmpty(email))
                 {
                     Email.setError("* Email is required");
@@ -85,7 +87,7 @@ TextView resetpassword;
                 EditText resetmail=new EditText(view.getContext());
                 final AlertDialog.Builder passwordResetDialog=new AlertDialog.Builder(view.getContext());
                 passwordResetDialog.setTitle("Reset Forgotten Password");
-                passwordResetDialog.setMessage("Reset link will be send to "+resetmail.getText().toString().trim());
+                passwordResetDialog.setMessage("Reset link will be Emailed at "+resetmail.getText().toString().trim());
                 passwordResetDialog.setView(resetmail);
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override

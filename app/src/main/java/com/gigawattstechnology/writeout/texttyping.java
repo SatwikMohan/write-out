@@ -42,17 +42,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class texttyping extends AppCompatActivity {
 TextView articlename,date,authorname,category;
-String an,da,aun,ca;
+String an,da,aun,ca,useremail;
 EditText articletext;
 StorageReference storageReference;
-DatabaseReference databaseReference;
+DatabaseReference databaseReference,user;
+    double r=  Math.random()*100;
+    double s=r;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,11 +71,16 @@ DatabaseReference databaseReference;
        da=getIntent().getStringExtra("date");
        aun=getIntent().getStringExtra("authorname");
         ca=getIntent().getStringExtra("category");
+        //useremail=getIntent().getStringExtra("useremail");
         articlename.setText(an);
         date.setText(da);
         authorname.setText(aun);
         category.setText(ca);
         articletext=findViewById(R.id.articletext);
+        storageReference=FirebaseStorage.getInstance().getReference();
+       databaseReference= FirebaseDatabase.getInstance().getReference("Write OUT");
+       String k=an+aun+ca;
+       user=FirebaseDatabase.getInstance().getReference(k);
     }
     public void publish(View view)
     {
@@ -92,7 +103,7 @@ DatabaseReference databaseReference;
         if (!root.exists()) {
             root.mkdir();
         }
-        File file = new File(root, an+" "+da+" "+aun+".pdf");
+        File file = new File(root, "text" +s+ ".pdf");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             mypdf.writeTo(fileOutputStream);
@@ -102,8 +113,38 @@ DatabaseReference databaseReference;
         mypdf.close();
         uploadPDF();
     }
-
     private void uploadPDF() {
+        File pdf=new File(Environment.getExternalStorageDirectory()+"/Documents/"+"text" +s+ ".pdf");
+        Uri path=Uri.fromFile(pdf);
+        sendtofirebase(path);
+    }
+    private void sendtofirebase(Uri path) {
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle(".......File is getting ONLINE.......");
+        progressDialog.show();
+        StorageReference reference=storageReference.child( "text" +s+ ".pdf");
 
+        reference.putFile(path)
+                      .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                          @Override
+                          public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                              Task<Uri> uriTask=taskSnapshot.getStorage().getDownloadUrl();
+                              while(!uriTask.isComplete());
+                              Uri uri=uriTask.getResult();
+                              putPDF putPDF=new putPDF(an+" "+da+" "+aun+" "+ca+".pdf",uri.toString());
+                              user.setValue(uri.toString());
+                              databaseReference.child(databaseReference.push().getKey()).setValue(putPDF);
+                              Toast.makeText(texttyping.this,"Article Published Successfully",Toast.LENGTH_LONG).show();
+                              progressDialog.dismiss();
+                          }
+                      }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progress=(100.0*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+                progressDialog.setMessage("..Article Published.."+(int)progress+"%");
+            }
+        });
+        Intent i=new Intent(texttyping.this,workspace.class);
+        startActivity(i);
     }
 }

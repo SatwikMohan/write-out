@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/font/.xml" value="0.21388888888888888" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/font/font.xml" value="0.21388888888888888" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_myarticle.xml" value="0.264" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_pdfview.xml" value="0.264" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_texttyping.xml" value="0.264" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_workspace.xml" value="0.23052536231884058" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_writebutton.xml" value="0.264" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/tt.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_login.xml" value="0.264" />
