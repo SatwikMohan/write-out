@@ -11,7 +11,7 @@
         android:id="@+id/writebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="176dp"
+        android:layout_marginEnd="156dp"
         android:clickable="true"
         android:onClick="writebutton"
         app:layout_constraintBottom_toBottomOf="parent"

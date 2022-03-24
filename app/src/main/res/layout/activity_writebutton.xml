@@ -7,6 +7,8 @@
     android:background="@android:color/holo_red_light"
     tools:context=".writebutton">
 
+
+
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="416dp"
@@ -17,48 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/art_details" />
-
-    <CheckBox
-        android:id="@+id/drama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Drama"
-        android:textColor="#FF9800"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.627"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
-
-    <CheckBox
-        android:id="@+id/scientificfacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scientific Facts"
-        android:textColor="#FF9800"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.463" />
-
-    <CheckBox
-        android:id="@+id/opinions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Opinions"
-        android:textColor="#FF9800"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/textView4"
@@ -182,24 +142,10 @@
             app:layout_constraintVertical_bias="0.769" />
     </RadioGroup>
 
-    <CheckBox
-        android:id="@+id/fiction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fiction"
-        android:textColor="#FF9800"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.463" />
-
     <TextView
         android:id="@+id/date"
-        android:layout_width="116dp"
-        android:layout_height="35dp"
+        android:layout_width="128dp"
+        android:layout_height="34dp"
         android:fontFamily="@font/archivo_black"
         android:text="SET DATE "
         android:textColor="#0B0A0A"
@@ -211,5 +157,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.184" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="301dp"
+        android:layout_height="65dp"
+        android:layout_margin="16dp"
+        android:background="#77ADC5"
+        android:hint="@string/select"
+        app:hintTextAppearance="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/dropmenu"
+            android:layout_width="298dp"
+            android:layout_height="71dp"
+            android:background="#9AC6EA"
+            android:inputType="none"
+            android:text="Select Article Category"
+            android:textColor="#121111"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,9 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -21,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -35,7 +39,10 @@ RadioGroup radioGroup;
 RadioButton radioButton;
 MediaPlayer player;
 DatePickerDialog.OnDateSetListener setListener;
-String scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission=" ";
+String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission=" ";
+    String[] items={"Fiction","Scientific facts","Opinions","Drama"};
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +50,6 @@ String scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission=" ";
         articlename=findViewById(R.id.articlename);
         date=findViewById(R.id.date);
         authorname=findViewById(R.id.authorname);
-        fiction=findViewById(R.id.fiction);
-        opinions=findViewById(R.id.opinions);
-        scientificfacts=findViewById(R.id.scientificfacts);
-        drama=findViewById(R.id.drama);
         create=findViewById(R.id.create);
         radioGroup=findViewById(R.id.radiogroup);
         Calendar calendar=Calendar.getInstance();
@@ -69,24 +72,24 @@ String scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission=" ";
             }
         });
 
+        autoCompleteTextView=findViewById(R.id.dropmenu);
+        adapterItems=new ArrayAdapter<>(this,R.layout.list_item,items);
+        autoCompleteTextView.setAdapter(adapterItems);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                item=adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(getApplicationContext(),"Category: "+item,Toast.LENGTH_SHORT).show();
+            }
+        });
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sarticlename=articlename.getText().toString();
                 sdate=date.getText().toString();
                 sauthorname=authorname.getText().toString();
-                if(fiction.isChecked()){
-                    scategory=scategory+"Fiction ";
-                }
-                if(opinions.isChecked()){
-                    scategory=scategory+"Opinions ";
-                }
-                if(scientificfacts.isChecked()){
-                    scategory=scategory+"Scientific Facts ";
-                }
-                if(drama.isChecked()){
-                    scategory=scategory+"Drama ";
-                }
+                scategory=item;
                 if(discission.equals("Text typing"))
                 {
                     Intent i=new Intent(writebutton.this,texttyping.class);

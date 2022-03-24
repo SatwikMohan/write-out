@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_login.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_myarticle.xml" value="0.2296195652173913" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_testrun.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_texttyping.xml" value="0.23324275362318841" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_workspace.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_writebutton.xml" value="0.2341485507246377" />
@@ -12,8 +13,10 @@
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/fragment_myfavoritetab.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/fragment_myratingstab.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/fragment_othersarticletab.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/list_item.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/navigation_testing.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/navigationtesting.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/testrun.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/tt.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/menu/navigation_menu.xml" value="0.25416666666666665" />
       </map>
