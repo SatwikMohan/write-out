@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/myarticle"
+        android:id="@+id/myarticlenavigation"
         android:checkable="false"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_save"
@@ -11,15 +10,16 @@
         android:visible="true"
         />
     <item
-        android:id="@+id/myfavorite"
+        android:id="@+id/myfavoritenavigation"
         android:enabled="true"
         android:icon="@android:drawable/star_big_on"
         android:title="My Favorites"
         />
     <item
-        android:id="@+id/myarticleratings"
+        android:id="@+id/myarticleratingsnavigation"
         android:enabled="true"
         android:icon="@drawable/ratings"
         android:title="My Ratings"
         />
+
 </menu>

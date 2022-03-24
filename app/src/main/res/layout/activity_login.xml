@@ -35,8 +35,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523" />
 
     <EditText
         android:id="@+id/emailin"
@@ -53,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.368" />
 
     <EditText
         android:id="@+id/namein"
@@ -61,7 +63,7 @@
         android:layout_height="55dp"
         android:ems="10"
         android:fontFamily="@font/architects_daughter"
-        android:hint="Name"
+        android:hint="Username"
         android:inputType="textPersonName"
         android:textColor="#F8F1F1"
         android:textColorHint="#121111"
@@ -70,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.211" />
 
     <TextView
         android:id="@+id/textView2"

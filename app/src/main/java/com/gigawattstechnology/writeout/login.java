@@ -35,7 +35,7 @@ Button Login;
 ProgressBar progress;
 TextView resetpassword;
     FirebaseAuth fAuth;
-
+FirebaseDatabase fd=FirebaseDatabase.getInstance();
 String value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,19 +73,26 @@ String value;
                     return;
                 }
                 String auth=email.substring(0,email.indexOf("@"));
-                /*DatabaseReference mref= fd.getInstance().getReference(auth);
+                DatabaseReference mref= fd.getInstance().getReference().child(auth);
                 mref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener(){
                     @Override
                     public void onDataChange(com.google.firebase.database.DataSnapshot snapshot) {
-                        value=(String) snapshot.getValue();
+                        value= snapshot.getValue().toString();
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                });*/
-
+                });
+                if(!name.equals(value))
+                {
+                    Name.setError("* Re-enter Username for security");
+                    return;
+                }
+                String done=auth+name;
+                Intent i=new Intent(login.this,texttyping.class);
+                i.putExtra("done",done);
                 progress.setVisibility(View.VISIBLE);
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

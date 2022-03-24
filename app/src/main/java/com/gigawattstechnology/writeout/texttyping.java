@@ -53,7 +53,7 @@ import com.google.firebase.storage.UploadTask;
 
 public class texttyping extends AppCompatActivity {
 TextView articlename,date,authorname,category;
-String an,da,aun,ca,useremail;
+String an,da,aun,ca,k;
 EditText articletext;
 StorageReference storageReference;
 DatabaseReference databaseReference,user;
@@ -71,7 +71,7 @@ DatabaseReference databaseReference,user;
        da=getIntent().getStringExtra("date");
        aun=getIntent().getStringExtra("authorname");
         ca=getIntent().getStringExtra("category");
-        //useremail=getIntent().getStringExtra("useremail");
+       // k=getIntent().getStringExtra("done");
         articlename.setText(an);
         date.setText(da);
         authorname.setText(aun);
@@ -79,8 +79,7 @@ DatabaseReference databaseReference,user;
         articletext=findViewById(R.id.articletext);
         storageReference=FirebaseStorage.getInstance().getReference();
        databaseReference= FirebaseDatabase.getInstance().getReference("Write OUT");
-       String k=an+aun+ca;
-       user=FirebaseDatabase.getInstance().getReference(k);
+      // user=FirebaseDatabase.getInstance().getReference(k);
     }
     public void publish(View view)
     {
@@ -132,7 +131,7 @@ DatabaseReference databaseReference,user;
                               while(!uriTask.isComplete());
                               Uri uri=uriTask.getResult();
                               putPDF putPDF=new putPDF(an+" "+da+" "+aun+" "+ca+".pdf",uri.toString());
-                              user.setValue(uri.toString());
+                              //user.setValue(uri.toString());
                               databaseReference.child(databaseReference.push().getKey()).setValue(putPDF);
                               Toast.makeText(texttyping.this,"Article Published Successfully",Toast.LENGTH_LONG).show();
                               progressDialog.dismiss();
