@@ -33,7 +33,7 @@ import adapter.PageRecyclerAdapter;
 public class writebutton extends AppCompatActivity {
 EditText articlename,authorname;
 TextView date;
-CheckBox fiction,opinions,scientificfacts,drama;
+//CheckBox fiction,opinions,scientificfacts,drama;
 Button create;
 RadioGroup radioGroup;
 RadioButton radioButton;
@@ -52,6 +52,7 @@ String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission="
         authorname=findViewById(R.id.authorname);
         create=findViewById(R.id.create);
         radioGroup=findViewById(R.id.radiogroup);
+
         Calendar calendar=Calendar.getInstance();
         final int year=calendar.get(Calendar.YEAR);
         final int month=calendar.get(Calendar.MONTH);
@@ -101,7 +102,12 @@ String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission="
                 }
                 if(discission.equals("By images"))
                 {
-
+                    Intent i=new Intent(writebutton.this,byimages.class);
+                    i.putExtra("articlename",sarticlename);
+                    i.putExtra("date",sdate);
+                    i.putExtra("authorname",sauthorname);
+                    i.putExtra("category",scategory);
+                    startActivity(i);
                 }
             }
         });

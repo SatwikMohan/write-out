@@ -71,15 +71,15 @@ DatabaseReference databaseReference,user;
        da=getIntent().getStringExtra("date");
        aun=getIntent().getStringExtra("authorname");
         ca=getIntent().getStringExtra("category");
-       // k=getIntent().getStringExtra("done");
+        k=getIntent().getStringExtra("done");
         articlename.setText(an);
         date.setText(da);
         authorname.setText(aun);
         category.setText(ca);
         articletext=findViewById(R.id.articletext);
         storageReference=FirebaseStorage.getInstance().getReference();
-       databaseReference= FirebaseDatabase.getInstance().getReference("Write OUT");
-      // user=FirebaseDatabase.getInstance().getReference(k);
+        databaseReference= FirebaseDatabase.getInstance().getReference("Write OUT");
+        //user=FirebaseDatabase.getInstance().getReference(k);
     }
     public void publish(View view)
     {
@@ -122,7 +122,6 @@ DatabaseReference databaseReference,user;
         progressDialog.setTitle(".......File is getting ONLINE.......");
         progressDialog.show();
         StorageReference reference=storageReference.child( "text" +s+ ".pdf");
-
         reference.putFile(path)
                       .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                           @Override
@@ -131,7 +130,7 @@ DatabaseReference databaseReference,user;
                               while(!uriTask.isComplete());
                               Uri uri=uriTask.getResult();
                               putPDF putPDF=new putPDF(an+" "+da+" "+aun+" "+ca+".pdf",uri.toString());
-                              //user.setValue(uri.toString());
+                             // user.setValue(uri.toString());
                               databaseReference.child(databaseReference.push().getKey()).setValue(putPDF);
                               Toast.makeText(texttyping.this,"Article Published Successfully",Toast.LENGTH_LONG).show();
                               progressDialog.dismiss();

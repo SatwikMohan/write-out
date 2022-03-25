@@ -55,8 +55,10 @@ FirebaseAuth fAuth;
                 String auth=email.substring(0,email.indexOf("@"));
                 databaseReference= FirebaseDatabase.getInstance().getReference(auth);
                 databaseReference.setValue(name);
+                Intent i=new Intent(signup.this,texttyping.class);
+                i.putExtra("done",auth+name);
                 //String authenticate=name+email;
-                if(password.equals(cpassword)==false)
+                if(!password.equals(cpassword))
                 {
                     SetPassword.setError("* Password and Confirm Password are not same");
                     ConfirmPassword.setError("* Password and Confirm Password are not same");
@@ -88,7 +90,6 @@ FirebaseAuth fAuth;
 
                         }else{
                             Toast.makeText(signup.this,"ERROR!!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });

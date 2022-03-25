@@ -8,13 +8,13 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
 
-        android:layout_width="80dp"
-        android:layout_height="54dp"
+        android:layout_width="245dp"
+        android:layout_height="78dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:text="2"
+        android:text="Other's Articles"
         android:textColor="#121010"
         android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </FrameLayout>

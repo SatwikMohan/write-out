@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_byimages.xml" value="0.264" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_login.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_myarticle.xml" value="0.2296195652173913" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/activity_testrun.xml" value="0.22871376811594202" />
@@ -13,6 +14,7 @@
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/fragment_myfavoritetab.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/fragment_myratingstab.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/fragment_othersarticletab.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/fragmentmyarticle_textview.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/list_item.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/navigation_testing.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/Satwik Mohan/AndroidStudioProjects/WriteOUT/app/src/main/res/layout/navigationtesting.xml" value="0.23867753623188406" />

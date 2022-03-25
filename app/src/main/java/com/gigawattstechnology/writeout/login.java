@@ -87,12 +87,10 @@ String value;
                 });
                 if(!name.equals(value))
                 {
+                    Name.setText("");
                     Name.setError("* Re-enter Username for security");
                     return;
                 }
-                String done=auth+name;
-                Intent i=new Intent(login.this,texttyping.class);
-                i.putExtra("done",done);
                 progress.setVisibility(View.VISIBLE);
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -118,7 +116,7 @@ String value;
                 EditText resetmail=new EditText(view.getContext());
                 final AlertDialog.Builder passwordResetDialog=new AlertDialog.Builder(view.getContext());
                 passwordResetDialog.setTitle("Reset Forgotten Password");
-                passwordResetDialog.setMessage("Reset link will be Emailed at "+resetmail.getText().toString().trim());
+                passwordResetDialog.setMessage("Enter your registered email "+resetmail.getText().toString().trim());
                 passwordResetDialog.setView(resetmail);
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
