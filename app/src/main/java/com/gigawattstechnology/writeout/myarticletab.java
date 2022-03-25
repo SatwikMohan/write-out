@@ -15,6 +15,7 @@ import adapter.RandomNumListAdapter;
 
 public class myarticletab extends Fragment {
     private RecyclerView recyclerView;
+    String[] name={"1","2","3","1","2","3","1","2","3","1","2","3"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class myarticletab extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter(1234));
+        recyclerView.setAdapter(new RandomNumListAdapter(name));
 
         return view;
     }

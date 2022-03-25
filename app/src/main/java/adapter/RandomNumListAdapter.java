@@ -14,9 +14,9 @@ import java.util.Random;
 
 public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdapter.RecyclerViewHolder> {
     private Random random;
-
-    public RandomNumListAdapter(int seed) {
-        this.random = new Random(seed);
+private String[] name;
+    public RandomNumListAdapter(String[] name) {
+        this.name =name;
     }
 
     @Override
@@ -34,12 +34,12 @@ public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdap
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        holder.getView().setText(String.valueOf(random.nextInt()));
+        holder.getView().setText(name[position]);
     }
 
     @Override
     public int getItemCount() {
-        return 100;
+        return name.length;
     }
 
 
