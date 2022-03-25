@@ -3,6 +3,7 @@ package adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,8 @@ private String[] name;
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+        holder.doc.setImageResource(R.drawable.doc);
+        holder.tab.setImageResource(R.drawable.tabart);
         holder.getView().setText(name[position]);
     }
 
@@ -44,10 +47,12 @@ private String[] name;
 
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-
+private ImageView doc,tab;
         private TextView view;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            tab=itemView.findViewById(R.id.tabart);
+            doc=itemView.findViewById(R.id.tabicon);
             view = itemView.findViewById(R.id.randomText);
         }
 
