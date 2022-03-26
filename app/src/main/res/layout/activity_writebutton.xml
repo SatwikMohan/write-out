@@ -53,7 +53,7 @@
         android:layout_height="51dp"
         android:background="#D1C8C8"
         android:ems="10"
-        android:hint="Author"
+        android:hint="Give Author Name"
         android:inputType="textPersonName"
         android:textColor="#AA00FF"
         android:textColorHint="#121010"
