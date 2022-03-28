@@ -52,7 +52,7 @@ FirebaseAuth fAuth;
                 String email=Email.getText().toString().trim();
                 String password=SetPassword.getText().toString().trim();
                 String cpassword=ConfirmPassword.getText().toString().trim();
-                String auth=email.substring(0,email.indexOf("@")).replace(".","");
+                String auth=email.substring(0,email.indexOf("@")).replace(".","")+"aut";
                 databaseReference= FirebaseDatabase.getInstance().getReference(auth);
                 databaseReference.setValue(name);
                 //String authenticate=name+email;

@@ -36,7 +36,7 @@ ProgressBar progress;
 TextView resetpassword;
     FirebaseAuth fAuth;
 FirebaseDatabase fd=FirebaseDatabase.getInstance();
-String value;
+String value,test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +72,8 @@ String value;
                     Password.setError("* Password should contain at least 8 characters");
                     return;
                 }
-                String auth=email.substring(0,email.indexOf("@"));
+                //test=email.substring(0,email.indexOf("@")).replace(".","");
+                String auth=email.substring(0,email.indexOf("@")).replace(".","")+"aut";
                 DatabaseReference mref= fd.getInstance().getReference().child(auth);
                 mref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener(){
                     @Override
@@ -98,6 +99,10 @@ String value;
                         if(task.isSuccessful())
                         {
                             Toast.makeText(login.this,name+" is Successfully Logged IN",Toast.LENGTH_SHORT).show();
+                            //Bundle bundle=new Bundle();
+                            //bundle.putString("registeredauth",test);
+                            //myarticletab fragobj = new myarticletab();
+                            //fragobj.setArguments(bundle);
                             startActivity(new Intent(getApplicationContext(),workspace.class));
 
                         }else{

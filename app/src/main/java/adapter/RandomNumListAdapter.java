@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigawattstechnology.writeout.R;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdapter.RecyclerViewHolder> {
-    private Random random;
-private String[] name;
-    public RandomNumListAdapter(String[] name) {
+//private ArrayList<String> name=new ArrayList<>();
+    Set<String> name;
+    public RandomNumListAdapter(Set<String> name) {
         this.name =name;
     }
 
@@ -37,12 +39,13 @@ private String[] name;
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         holder.doc.setImageResource(R.drawable.doc);
         holder.tab.setImageResource(R.drawable.tabart);
-        holder.getView().setText(name[position]);
+        String[] Name = name.toArray(new String[name.size()]);
+        holder.getView().setText(Name[position]);
     }
 
     @Override
     public int getItemCount() {
-        return name.length;
+        return name.size();
     }
 
 

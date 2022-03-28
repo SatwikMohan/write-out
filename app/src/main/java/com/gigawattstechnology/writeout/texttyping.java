@@ -1,11 +1,7 @@
 package com.gigawattstechnology.writeout;
 
-import static com.google.common.net.MediaType.PDF;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,8 +14,6 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,25 +21,14 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import adapter.PageRecyclerAdapter;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -162,6 +145,7 @@ public class texttyping extends AppCompatActivity {
         sendtofirebase(path);
     }
     private void sendtofirebase(Uri path) {
+        Toast.makeText(texttyping.this,"..Don't Click Anywhere..",Toast.LENGTH_SHORT).show();
         databaseReference = FirebaseDatabase.getInstance().getReference(auth.substring(0,auth.indexOf("@")).replace(".",""));
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setTitle(".......File is getting ONLINE.......");
@@ -188,6 +172,8 @@ public class texttyping extends AppCompatActivity {
             }
         });
         Intent i=new Intent(texttyping.this,workspace.class);
+
+
         startActivity(i);
         Toast.makeText(texttyping.this,"...Publishing...",Toast.LENGTH_LONG).show();
     }

@@ -13,16 +13,16 @@ import com.gigawattstechnology.writeout.R;
 
 import java.util.Random;
 
-public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAdapter2.RecyclerViewHolder> {
+public class RandomNumListAdapter4 extends RecyclerView.Adapter<RandomNumListAdapter4.RecyclerViewHolder> {
     private Random random;
     private String[] name;
-    public RandomNumListAdapter2(String[] name) {
+    public RandomNumListAdapter4(String[] name) {
         this.name =name;
     }
 
     @Override
     public int getItemViewType(final int position) {
-        return R.layout.fragmentothersarticle_textview;
+        return R.layout.fragmentmyratings_textview;
     }
 
     @NonNull
@@ -53,7 +53,7 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
             super(itemView);
             tab=itemView.findViewById(R.id.tabart);
             doc=itemView.findViewById(R.id.tabicon);
-            view = itemView.findViewById(R.id.randomText2);
+            view = itemView.findViewById(R.id.randomText4);
         }
 
         public TextView getView(){
