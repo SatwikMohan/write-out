@@ -172,8 +172,7 @@ public class texttyping extends AppCompatActivity {
             }
         });
         Intent i=new Intent(texttyping.this,workspace.class);
-
-
+        i.putExtra("auth",auth.substring(0,auth.indexOf("@")).replace(".",""));
         startActivity(i);
         Toast.makeText(texttyping.this,"...Publishing...",Toast.LENGTH_LONG).show();
     }

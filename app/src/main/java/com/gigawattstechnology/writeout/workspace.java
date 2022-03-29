@@ -1,7 +1,10 @@
 package com.gigawattstechnology.writeout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -14,15 +17,19 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.EventListener;
+
 public class workspace extends AppCompatActivity {
 MediaPlayer player;
 TabLayout tabLayout;
 TabItem myarticle,othersarticle,myfavorite,myratings;
 ViewPager viewPager;
+TextView profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workspace);
+        profile=findViewById(R.id.profile);
         tabLayout=findViewById(R.id.tablayout);
         myarticle=findViewById(R.id.myarticle);
         othersarticle=findViewById(R.id.othersarticle);
@@ -36,6 +43,16 @@ ViewPager viewPager;
         pageAdapter.addFragment(new myfavoritetab(),"My Favorites");
         pageAdapter.addFragment(new myratingstab(),"My Ratings");
         viewPager.setAdapter(pageAdapter);
+        profile.setText(getIntent().getStringExtra("auth"));
+        authtransfer.storename(profile.getText().toString());
+        /*FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        Bundle bundle=new Bundle();
+        bundle.putString("rauth",profile.getText().toString());
+        myarticletab myarticletab=new myarticletab();
+        myarticletab.setArguments(bundle);
+        fragmentTransaction.replace(R.id.framelayout,myarticletab).commit();*/
+
     }
     public void writebutton(View view)
     {

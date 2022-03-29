@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +31,22 @@ public class myarticletab extends Fragment {
     ArrayList<String> key=new ArrayList<>();
     ArrayList<String> name=new ArrayList<>();
     ArrayList<String> store=new ArrayList<>();
+    String auth="satwikg17";
     int i;
     long r;
+    TextView tauth;
+   /* @Override
+    public void onCreate(Bundle savedInstancestate) {
+        super.onCreate(savedInstancestate);
+        tauth= tauth.findViewById(R.id.tauth);
+        tauth.setText(this.getArguments().getString("rauth"));
+        auth=tauth.getText().toString();
+    }*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-            DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("satwikg17");
+        View view = inflater.inflate(R.layout.fragment_myarticletab, container, false);
+            DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child(authtransfer.givename());
             ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -49,7 +60,7 @@ public class myarticletab extends Fragment {
                 }
             });
             for (i = 0; i < r; i++) {
-                DatabaseReference v = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("satwikg17").child(key.get(i)).child("name");
+                DatabaseReference v = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child(authtransfer.givename()).child(key.get(i)).child("name");
                 v.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,7 +75,6 @@ public class myarticletab extends Fragment {
         Set<String> s=new HashSet<>(name);
 //name.add("nsnsnsj 26/3/2022 sbbsbsbh Scientific facts");
 //name.add("nsnsnsj 26/3/2022 sbbsbsbh Scientific facts");
-        View view = inflater.inflate(R.layout.fragment_myarticletab, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

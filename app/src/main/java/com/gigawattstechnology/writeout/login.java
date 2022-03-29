@@ -103,7 +103,9 @@ String value,test;
                             //bundle.putString("registeredauth",test);
                             //myarticletab fragobj = new myarticletab();
                             //fragobj.setArguments(bundle);
-                            startActivity(new Intent(getApplicationContext(),workspace.class));
+                            Intent i=new Intent(login.this,workspace.class);
+                            i.putExtra("auth",auth.replace("aut",""));
+                            startActivity(i);
 
                         }else{
                             Toast.makeText(login.this,"ERROR!!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
