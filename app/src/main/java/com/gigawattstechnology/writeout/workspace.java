@@ -45,13 +45,6 @@ TextView profile;
         viewPager.setAdapter(pageAdapter);
         profile.setText(getIntent().getStringExtra("auth"));
         authtransfer.storename(profile.getText().toString());
-        /*FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        Bundle bundle=new Bundle();
-        bundle.putString("rauth",profile.getText().toString());
-        myarticletab myarticletab=new myarticletab();
-        myarticletab.setArguments(bundle);
-        fragmentTransaction.replace(R.id.framelayout,myarticletab).commit();*/
 
     }
     public void writebutton(View view)
@@ -80,6 +73,16 @@ TextView profile;
         super.onStop();
         stopPlayer();
     }
+    /*public void pdfviewmyarticle(View view){
+        String articletext=mytext.getText().toString().replace(" ","").replace("/","");
+        authtransfer.storekey(articletext);
+        Intent i=new Intent(workspace.this,pdfview.class);
+        startActivity(i);
+    }*/
+
+
+
+
     /*public void myarticle(View view)
     {
         if(player==null){

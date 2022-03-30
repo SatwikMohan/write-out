@@ -159,8 +159,9 @@ public class texttyping extends AppCompatActivity {
                               while(!uriTask.isComplete());
                               Uri uri=uriTask.getResult();
                               putPDF putPDF=new putPDF(an+" "+da+" "+aun+" "+ca,uri.toString());
+                              authtransfer.storeurl(uri.toString());
                              // user.setValue(uri.toString());
-                              databaseReference.child(databaseReference.push().getKey()).setValue(putPDF);
+                              databaseReference.child(an+""+da.replace("/","")+""+aun+""+ca).setValue(putPDF);
                               Toast.makeText(texttyping.this,"Article Published Successfully",Toast.LENGTH_LONG).show();
                               progressDialog.dismiss();
                           }

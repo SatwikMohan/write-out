@@ -34,14 +34,7 @@ public class myarticletab extends Fragment {
     String auth="satwikg17";
     int i;
     long r;
-    TextView tauth;
-   /* @Override
-    public void onCreate(Bundle savedInstancestate) {
-        super.onCreate(savedInstancestate);
-        tauth= tauth.findViewById(R.id.tauth);
-        tauth.setText(this.getArguments().getString("rauth"));
-        auth=tauth.getText().toString();
-    }*/
+    TextView mytext;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,6 +72,13 @@ public class myarticletab extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(new RandomNumListAdapter(s));
+        /*mytext=view.findViewById(R.id.randomText);
+        mytext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                authtransfer.storekey(mytext.getText().toString().replace(" ","").replace("/",""));
+            }
+        });*/
         return view;
     }
 }
