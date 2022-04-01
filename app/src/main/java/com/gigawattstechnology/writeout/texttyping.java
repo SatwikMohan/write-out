@@ -81,7 +81,9 @@ public class texttyping extends AppCompatActivity {
         LinearLayout ll=new LinearLayout(this);
         ll.setOrientation(LinearLayout.VERTICAL);
         ll.addView(registeredemail);
+        registeredemail.setHint("Registered Email");
         ll.addView(registeredpassword);
+        registeredpassword.setHint("Registered Password");
         Dialog.setView(ll);
         Dialog.setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

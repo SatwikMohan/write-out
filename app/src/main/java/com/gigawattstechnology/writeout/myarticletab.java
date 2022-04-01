@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
@@ -26,13 +28,13 @@ import java.util.Set;
 import adapter.RandomNumListAdapter;
 
 
-public class myarticletab extends Fragment {
+public class myarticletab extends Fragment  {
     private RecyclerView recyclerView;
     ArrayList<String> key=new ArrayList<>();
     ArrayList<String> name=new ArrayList<>();
     ArrayList<String> store=new ArrayList<>();
     String auth="satwikg17";
-    int i;
+    int i,c=0;
     long r;
     TextView mytext;
     @Override
@@ -64,14 +66,14 @@ public class myarticletab extends Fragment {
                     }
                 });
             }
-            key.clear();
+            Set<String> k=new HashSet<>(key);
         Set<String> s=new HashSet<>(name);
 //name.add("nsnsnsj 26/3/2022 sbbsbsbh Scientific facts");
 //name.add("nsnsnsj 26/3/2022 sbbsbsbh Scientific facts");
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter(s));
+        recyclerView.setAdapter(new RandomNumListAdapter(s,k));
         /*mytext=view.findViewById(R.id.randomText);
         mytext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,8 @@ public class myarticletab extends Fragment {
                 authtransfer.storekey(mytext.getText().toString().replace(" ","").replace("/",""));
             }
         });*/
+        key.clear();
+        name.clear();
         return view;
     }
 }

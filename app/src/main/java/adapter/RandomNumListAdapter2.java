@@ -3,7 +3,9 @@ package adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,17 +49,21 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
 
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        private ImageView doc,tab;
-        private TextView view;
+        private ImageView doc,tab,staroff,staron;
+        private Button tview;
+        private RatingBar ratingBar;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             tab=itemView.findViewById(R.id.tabart);
             doc=itemView.findViewById(R.id.tabicon);
-            view = itemView.findViewById(R.id.randomText2);
+            tview = itemView.findViewById(R.id.randomText2);
+            staroff=itemView.findViewById(R.id.staroff);
+            staron=itemView.findViewById(R.id.staron);
+            ratingBar=itemView.findViewById(R.id.ratingBar);
         }
 
-        public TextView getView(){
-            return view;
+        public Button getView(){
+            return tview;
         }
     }
 }
