@@ -57,6 +57,19 @@ String value,test;
                 String password=Password.getText().toString().trim();
                 //Intent i=new Intent(login.this,texttyping.class);
                // i.putExtra("useremail",Email.getText().toString().trim().substring(0,Email.getText().toString().trim().indexOf("@")));
+                String auth=email.substring(0,email.indexOf("@")).replace(".","")+"aut";
+                DatabaseReference mref= fd.getInstance().getReference().child(auth);
+                mref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener(){
+                    @Override
+                    public void onDataChange(com.google.firebase.database.DataSnapshot snapshot) {
+                        value= snapshot.getValue().toString();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 if(TextUtils.isEmpty(email))
                 {
                     Email.setError("* Email is required");
@@ -73,19 +86,7 @@ String value,test;
                     return;
                 }
                 //test=email.substring(0,email.indexOf("@")).replace(".","");
-                String auth=email.substring(0,email.indexOf("@")).replace(".","")+"aut";
-                DatabaseReference mref= fd.getInstance().getReference().child(auth);
-                mref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener(){
-                    @Override
-                    public void onDataChange(com.google.firebase.database.DataSnapshot snapshot) {
-                        value= snapshot.getValue().toString();
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
                 if(!name.equals(value))
                 {
                     Name.setText("");

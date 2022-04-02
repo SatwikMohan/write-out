@@ -48,7 +48,7 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
     }
 
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView doc,tab,staroff,staron;
         private Button tview;
         private RatingBar ratingBar;
@@ -60,10 +60,26 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
             staroff=itemView.findViewById(R.id.staroff);
             staron=itemView.findViewById(R.id.staron);
             ratingBar=itemView.findViewById(R.id.ratingBar);
+            staroff.setOnClickListener(this);
+            staron.setOnClickListener(this);
+            staron.setVisibility(View.INVISIBLE);
+            staroff.setVisibility(View.VISIBLE);
         }
 
         public Button getView(){
             return tview;
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(staroff.getVisibility()==View.VISIBLE&&staron.getVisibility()==View.INVISIBLE){
+                staroff.setVisibility(View.INVISIBLE);
+                staron.setVisibility(View.VISIBLE);
+            }
+            if(staroff.getVisibility()==View.INVISIBLE&&staron.getVisibility()==View.VISIBLE){
+                staroff.setVisibility(View.VISIBLE);
+                staron.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }

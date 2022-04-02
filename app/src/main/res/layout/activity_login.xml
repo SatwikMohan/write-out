@@ -106,7 +106,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
-        android:onClick="resetpassword"
         android:text="- * Forgot Password? Reset Passwprd * -"
         android:textColor="#6B00FF"
         android:textSize="16sp"
@@ -117,5 +116,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.628" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
