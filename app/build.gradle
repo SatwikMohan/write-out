@@ -5,7 +5,7 @@ android {
 
     defaultConfig {
         applicationId "com.gigawattstechnology.writeout"
-        minSdk 21
+        minSdk 20
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -28,12 +28,12 @@ android {
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.2.0')
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth:21.0.2'
-    implementation 'com.google.firebase:firebase-analytics:20.1.1'
+    implementation 'com.google.firebase:firebase-auth:21.0.3'
+    implementation 'com.google.firebase:firebase-analytics:20.1.2'
     implementation 'com.google.firebase:firebase-database:20.0.4'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.firebase:firebase-database:20.0.4'
-    implementation 'com.google.firebase:firebase-firestore:24.0.2'
+    implementation 'com.google.firebase:firebase-firestore:24.1.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'

@@ -57,44 +57,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.877" />
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="@style/Theme.Material3.Dark"
-            android:layout_width="241dp"
-            android:layout_height="48dp"
-            android:progressBackgroundTint="#FFFFFF"
-            android:progressTint="#44FF00"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.148"
-            tools:ignore="SpeakableTextPresentCheck" />
-
         <ImageView
             android:id="@+id/staroff"
-            android:layout_width="44dp"
-            android:layout_height="50dp"
+            android:layout_width="56dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintHorizontal_bias="0.368"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.387"
-            app:srcCompat="@android:drawable/btn_star" />
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/staroff" />
 
         <ImageView
             android:id="@+id/staron"
-            android:layout_width="52dp"
-            android:layout_height="50dp"
-            android:visibility="visible"
+            android:layout_width="56dp"
+            android:layout_height="54dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.864"
+            app:layout_constraintHorizontal_bias="0.553"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.382"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            app:layout_constraintVertical_bias="0.223"
+            app:srcCompat="@drawable/staron" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

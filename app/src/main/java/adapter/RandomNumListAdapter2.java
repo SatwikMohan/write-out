@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigawattstechnology.writeout.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAdapter2.RecyclerViewHolder> {
@@ -39,6 +40,8 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         holder.doc.setImageResource(R.drawable.doc);
         holder.tab.setImageResource(R.drawable.tabart);
+        holder.staroff.setImageResource(R.drawable.staroff);
+        holder.staron.setImageResource(R.drawable.staron);
         holder.getView().setText(name[position]);
     }
 
@@ -59,7 +62,6 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
             tview = itemView.findViewById(R.id.randomText2);
             staroff=itemView.findViewById(R.id.staroff);
             staron=itemView.findViewById(R.id.staron);
-            ratingBar=itemView.findViewById(R.id.ratingBar);
             staroff.setOnClickListener(this);
             staron.setOnClickListener(this);
             staron.setVisibility(View.INVISIBLE);
@@ -72,14 +74,16 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
 
         @Override
         public void onClick(View view) {
-            if(staroff.getVisibility()==View.VISIBLE&&staron.getVisibility()==View.INVISIBLE){
+           /* if(staroff.isShown() && !staron.isShown()){
                 staroff.setVisibility(View.INVISIBLE);
                 staron.setVisibility(View.VISIBLE);
             }
-            if(staroff.getVisibility()==View.INVISIBLE&&staron.getVisibility()==View.VISIBLE){
+            if(!staroff.isShown() && staron.isShown()){
                 staroff.setVisibility(View.VISIBLE);
                 staron.setVisibility(View.INVISIBLE);
-            }
+            }*/
+            staroff.setVisibility(View.INVISIBLE);
+            staron.setVisibility(View.VISIBLE);
         }
     }
 }
