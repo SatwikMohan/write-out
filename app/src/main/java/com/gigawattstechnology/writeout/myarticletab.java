@@ -68,19 +68,10 @@ public class myarticletab extends Fragment  {
             }
             Set<String> k=new HashSet<>(key);
         Set<String> s=new HashSet<>(name);
-//name.add("nsnsnsj 26/3/2022 sbbsbsbh Scientific facts");
-//name.add("nsnsnsj 26/3/2022 sbbsbsbh Scientific facts");
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(new RandomNumListAdapter(s,k));
-        /*mytext=view.findViewById(R.id.randomText);
-        mytext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                authtransfer.storekey(mytext.getText().toString().replace(" ","").replace("/",""));
-            }
-        });*/
         key.clear();
         name.clear();
         return view;

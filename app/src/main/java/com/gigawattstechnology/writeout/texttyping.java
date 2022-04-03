@@ -74,7 +74,7 @@ public class texttyping extends AppCompatActivity {
     public void publish(View view)
     {
 
-        EditText registeredemail=new EditText(view.getContext());
+        /*EditText registeredemail=new EditText(view.getContext());
         EditText registeredpassword=new EditText(view.getContext());
         final AlertDialog.Builder Dialog=new AlertDialog.Builder(view.getContext());
         Dialog.setTitle("Enter Registered Email and Password respectively");
@@ -92,8 +92,8 @@ public class texttyping extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(registeredemail.getText().toString(),registeredpassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-
+                        if(task.isSuccessful()) {*/
+                            auth=authtransfer.givename();
                             PdfDocument mypdf = new PdfDocument();
                             String tex = articletext.getText().toString();
                             Paint mypaint = new Paint();
@@ -123,23 +123,23 @@ public class texttyping extends AppCompatActivity {
                             mypdf.close();
                             uploadPDF();
 
-                        }else{
+                        /*}else{
                             Toast.makeText(texttyping.this,"ERROR!!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
 
-                        }
+                        }*/
 
-                    }
-                });
+                    //}
+                //});
 
-                    }
-                });
-        Dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                   // }
+               // });
+        /*Dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
             }
         });
-        Dialog.create().show();
+        Dialog.create().show();*/
     }
     private void uploadPDF() {
         File pdf=new File(Environment.getExternalStorageDirectory()+"/Documents/"+"text" +s+ ".pdf");
@@ -148,7 +148,7 @@ public class texttyping extends AppCompatActivity {
     }
     private void sendtofirebase(Uri path) {
         Toast.makeText(texttyping.this,"..Don't Click Anywhere..",Toast.LENGTH_SHORT).show();
-        databaseReference = FirebaseDatabase.getInstance().getReference(auth.substring(0,auth.indexOf("@")).replace(".",""));
+        databaseReference = FirebaseDatabase.getInstance().getReference(auth.replace(".",""));
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setTitle(".......File is getting ONLINE.......");
         progressDialog.show();
@@ -175,7 +175,7 @@ public class texttyping extends AppCompatActivity {
             }
         });
         Intent i=new Intent(texttyping.this,workspace.class);
-        i.putExtra("auth",auth.substring(0,auth.indexOf("@")).replace(".",""));
+        i.putExtra("auth",auth.replace(".",""));
         startActivity(i);
         Toast.makeText(texttyping.this,"...Publishing...",Toast.LENGTH_LONG).show();
     }

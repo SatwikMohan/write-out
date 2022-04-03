@@ -49,6 +49,7 @@ TextView profile;
     }
     public void writebutton(View view)
     {
+        authtransfer.storename(profile.getText().toString());
         if(player==null){
             player=MediaPlayer.create(this,R.raw.writesound);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
