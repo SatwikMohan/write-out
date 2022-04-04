@@ -15,11 +15,13 @@ import com.gigawattstechnology.writeout.R;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAdapter2.RecyclerViewHolder> {
     private Random random;
-    private String[] name;
-    public RandomNumListAdapter2(String[] name) {
+    //private String[] name;
+    private Set<String> name;
+    public RandomNumListAdapter2(Set<String> name) {
         this.name =name;
     }
 
@@ -42,16 +44,17 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
         holder.tab.setImageResource(R.drawable.tabart);
         holder.staroff.setImageResource(R.drawable.staroff);
         holder.staron.setImageResource(R.drawable.staron);
-        holder.getView().setText(name[position]);
+        String[] Name = name.toArray(new String[name.size()]);
+        holder.getView().setText(Name[position]);
     }
 
     @Override
     public int getItemCount() {
-        return name.length;
+        return name.size();
     }
 
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class RecyclerViewHolder<onClickListener1> extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView doc,tab,staroff,staron;
         private Button tview;
         private RatingBar ratingBar;
@@ -74,16 +77,20 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
 
         @Override
         public void onClick(View view) {
-           /* if(staroff.isShown() && !staron.isShown()){
-                staroff.setVisibility(View.INVISIBLE);
-                staron.setVisibility(View.VISIBLE);
-            }
-            if(!staroff.isShown() && staron.isShown()){
-                staroff.setVisibility(View.VISIBLE);
-                staron.setVisibility(View.INVISIBLE);
-            }*/
-            staroff.setVisibility(View.INVISIBLE);
-            staron.setVisibility(View.VISIBLE);
+            staroff.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    staroff.setVisibility(View.INVISIBLE);
+                    staron.setVisibility(View.VISIBLE);
+                }
+            });
+            staron.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    staroff.setVisibility(View.VISIBLE);
+                    staron.setVisibility(View.INVISIBLE);
+                }
+            });
         }
     }
 }

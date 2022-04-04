@@ -41,7 +41,7 @@ public class myarticletab extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myarticletab, container, false);
-            DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child(authtransfer.givename());
+            DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename());
             ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -55,7 +55,7 @@ public class myarticletab extends Fragment  {
                 }
             });
             for (i = 0; i < r; i++) {
-                DatabaseReference v = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child(authtransfer.givename()).child(key.get(i)).child("name");
+                DatabaseReference v = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename()).child(key.get(i)).child("name");
                 v.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

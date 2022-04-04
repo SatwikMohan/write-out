@@ -27,7 +27,7 @@ Button Register;
 FirebaseAuth fAuth;
     ProgressBar progress;
     StorageReference storageReference;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,usersreference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +55,8 @@ FirebaseAuth fAuth;
                 String auth=email.substring(0,email.indexOf("@")).replace(".","")+"aut";
                 databaseReference= FirebaseDatabase.getInstance().getReference(auth);
                 databaseReference.setValue(name);
+                usersreference=FirebaseDatabase.getInstance().getReference("Users");
+                usersreference.child(usersreference.push().getKey()).setValue(auth.replace("aut",""));
                 //String authenticate=name+email;
                 if(!password.equals(cpassword))
                 {

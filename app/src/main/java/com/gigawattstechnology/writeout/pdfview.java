@@ -24,7 +24,7 @@ public class pdfview extends AppCompatActivity {
 private TextView text1;
 private PDFView pdfView;
 private FirebaseDatabase fd =FirebaseDatabase.getInstance();
-DatabaseReference mref= fd.getReference().child(authtransfer.givename()).child(authtransfer.givekey()).child("url");
+DatabaseReference mref= fd.getReference("Write OUT").child(authtransfer.givename()).child(authtransfer.givekey()).child("url");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

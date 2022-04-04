@@ -148,7 +148,7 @@ public class texttyping extends AppCompatActivity {
     }
     private void sendtofirebase(Uri path) {
         Toast.makeText(texttyping.this,"..Don't Click Anywhere..",Toast.LENGTH_SHORT).show();
-        databaseReference = FirebaseDatabase.getInstance().getReference(auth.replace(".",""));
+        databaseReference = FirebaseDatabase.getInstance().getReference("Write OUT").child(auth.replace(".",""));
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setTitle(".......File is getting ONLINE.......");
         progressDialog.show();

@@ -34,14 +34,14 @@ TextView profile;
         myarticle=findViewById(R.id.myarticle);
         othersarticle=findViewById(R.id.othersarticle);
         myfavorite=findViewById(R.id.myfavorite);
-        myratings=findViewById(R.id.myratings);
+
         viewPager=findViewById(R.id.vpager);
         tabLayout.setupWithViewPager(viewPager);
         PageAdapter pageAdapter=new PageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pageAdapter.addFragment(new myarticletab(),"My Articles");
         pageAdapter.addFragment(new othersarticletab(),"Other's Articles");
         pageAdapter.addFragment(new myfavoritetab(),"My Favorites");
-        pageAdapter.addFragment(new myratingstab(),"My Ratings");
+
         viewPager.setAdapter(pageAdapter);
         profile.setText(getIntent().getStringExtra("auth"));
         authtransfer.storename(profile.getText().toString());
