@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import adapter.RandomNumListAdapter;
@@ -90,7 +92,7 @@ public class othersarticletab extends Fragment {
                         });
                     }
                 }*/
-
+/////
         DatabaseReference foruserkey=FirebaseDatabase.getInstance().getReference("Users");
         foruserkey.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
@@ -108,13 +110,11 @@ public class othersarticletab extends Fragment {
         });
 
         for(int i=0;i<r1;i++) {
-            DatabaseReference forusername = FirebaseDatabase.getInstance().getReference("Users").child(userkey.get(i));
+            DatabaseReference forusername = FirebaseDatabase.getInstance().getReference("Users").child(userkey.get(i)).child("name");
             forusername.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for(DataSnapshot postSnapshot : snapshot.getChildren()){
-                        users.add(postSnapshot.getValue().toString());
-                    }
+                        users.add(snapshot.getValue(String.class));
                 }
 
                 @Override
@@ -147,9 +147,7 @@ public class othersarticletab extends Fragment {
                     fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                                namevalues.add(postSnapshot.getValue().toString());
-                            }
+                                namevalues.add(snapshot.getValue(String.class));
                         }
 
                         @Override
@@ -160,9 +158,7 @@ public class othersarticletab extends Fragment {
                 }
             }
             namevalueskey.clear();
-
         }
-
        Set<String> nameset=new HashSet<>(namevalues);
         Set<String> userset=new HashSet<>(users);
         //namevalues.add("1");namevalues.add("2");namevalues.add("3");namevalues.add("4");namevalues.add("5");namevalues.add("6");

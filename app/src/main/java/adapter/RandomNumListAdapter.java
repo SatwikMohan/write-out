@@ -14,11 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigawattstechnology.writeout.R;
+import com.gigawattstechnology.writeout.User;
 import com.gigawattstechnology.writeout.authtransfer;
 import com.gigawattstechnology.writeout.pdfview;
 import com.gigawattstechnology.writeout.workspace;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -76,7 +78,6 @@ private ImageView doc,tab;
         @Override
         public void onClick(View view) {
             int position=getLayoutPosition();
-            String[] Key=key.toArray(new String[key.size()]);
             authtransfer.storekey(tview.getText().toString().replace(" ","").replace("/",""));
             Intent intent=new Intent(context,pdfview.class);
             context.startActivity(intent);

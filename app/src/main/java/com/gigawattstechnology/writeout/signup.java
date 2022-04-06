@@ -56,7 +56,7 @@ FirebaseAuth fAuth;
                 databaseReference= FirebaseDatabase.getInstance().getReference(auth);
                 databaseReference.setValue(name);
                 usersreference=FirebaseDatabase.getInstance().getReference("Users");
-                usersreference.child(usersreference.push().getKey()).setValue(auth.replace("aut",""));
+                usersreference.child(usersreference.push().getKey()).child("name").setValue(auth.replace("aut",""));
                 //String authenticate=name+email;
                 if(!password.equals(cpassword))
                 {
