@@ -106,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
-        android:text="- * Forgot Password? Reset Passwprd * -"
+        android:text="- * Forgot Password? Reset Password * -"
         android:textColor="#6B00FF"
         android:textSize="16sp"
         android:textStyle="bold"

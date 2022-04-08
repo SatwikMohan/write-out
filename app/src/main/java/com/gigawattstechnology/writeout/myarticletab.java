@@ -40,6 +40,12 @@ public class myarticletab extends Fragment  {
     int i,c=0;
     long r;
     TextView mytext;
+
+    /*RecyclerView recyclerView;
+    DatabaseReference database;
+    MyAdapter myAdapter;
+    ArrayList<User> list=new ArrayList<>();
+    ArrayList<String> listkey=new ArrayList<>();*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,9 +80,47 @@ public class myarticletab extends Fragment  {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setItemViewCacheSize(1);
         recyclerView.setAdapter(new RandomNumListAdapter(s,k));
         key.clear();
         name.clear();
+
+        /*recyclerView=view.findViewById(R.id.userList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        myAdapter=new MyAdapter(getContext(),list);
+        recyclerView.setAdapter(myAdapter);
+        database=FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename());
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot postsnapshot: snapshot.getChildren()){
+                    listkey.add(postsnapshot.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        for(int i=0;i< listkey.size();i++) {
+            database = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename()).child(listkey.get(i)).child("name");
+            database.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user=snapshot.getValue(User.class);
+                    list.add(user);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        myAdapter.notifyDataSetChanged();*/
+
         return view;
     }
 }

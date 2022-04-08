@@ -93,7 +93,7 @@ public class othersarticletab extends Fragment {
                     }
                 }*/
 /////
-        DatabaseReference foruserkey=FirebaseDatabase.getInstance().getReference("Users");
+        /*DatabaseReference foruserkey=FirebaseDatabase.getInstance().getReference().child("Users");
         foruserkey.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,7 +110,7 @@ public class othersarticletab extends Fragment {
         });
 
         for(int i=0;i<r1;i++) {
-            DatabaseReference forusername = FirebaseDatabase.getInstance().getReference("Users").child(userkey.get(i)).child("name");
+            DatabaseReference forusername = FirebaseDatabase.getInstance().getReference().child("Users").child(userkey.get(i)).child("name");
             forusername.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -124,15 +124,16 @@ public class othersarticletab extends Fragment {
             });
         }
 
-        for(int i=0;i< users.size();i++){
-            DatabaseReference fornamevalueskey = FirebaseDatabase.getInstance().getReference("Write OUT").child(users.get(i));
+        for(int i=0;i< users.size();i++) {
+            if (users.get(i) != authtransfer.givename()) {
+            DatabaseReference fornamevalueskey = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(users.get(i));
             fornamevalueskey.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for(DataSnapshot postSnapshot : snapshot.getChildren()){
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                         namevalueskey.add(postSnapshot.getKey());
                     }
-                    r2= snapshot.getChildrenCount();
+                    r2 = snapshot.getChildrenCount();
                 }
 
                 @Override
@@ -141,32 +142,31 @@ public class othersarticletab extends Fragment {
                 }
             });
 
-            for(int j=0;j<r2;j++) {
-                if (users.get(i) != authtransfer.givename()) {
-                    DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference("Write OUT").child(users.get(i)).child(namevalueskey.get(j)).child("name");
-                    fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                namevalues.add(snapshot.getValue(String.class));
-                        }
+            for (int j = 0; j < r2; j++) {
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(users.get(i)).child(namevalueskey.get(j)).child("name");
+                fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        namevalues.add(snapshot.getValue(String.class));
+                    }
 
-                        }
-                    });
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
-            namevalueskey.clear();
         }
-       Set<String> nameset=new HashSet<>(namevalues);
-        Set<String> userset=new HashSet<>(users);
+            namevalueskey.clear();
+        }*/
+       Set<String> nameset=new HashSet<>(database.give());
         //namevalues.add("1");namevalues.add("2");namevalues.add("3");namevalues.add("4");namevalues.add("5");namevalues.add("6");
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(new RandomNumListAdapter2(nameset));
-        namevalues.clear();
         return view;
     }
 }
