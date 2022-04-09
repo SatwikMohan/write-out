@@ -80,7 +80,6 @@ public class myarticletab extends Fragment  {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setItemViewCacheSize(1);
         recyclerView.setAdapter(new RandomNumListAdapter(s,k));
         key.clear();
         name.clear();

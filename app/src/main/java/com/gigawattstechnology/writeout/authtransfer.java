@@ -3,7 +3,7 @@ package com.gigawattstechnology.writeout;
 import android.widget.TextView;
 
 public class authtransfer {
-    private static String name,url,key;
+    private static String name,url,key,username;
     public static void storename(String storename){
         name=storename;
     }
@@ -21,5 +21,11 @@ public class authtransfer {
     }
     public static String givekey(){
         return key;
+    }
+    public static void storeusername(String storeusername){
+        username=storeusername;
+    }
+    public static String giveusername(){
+        return username;
     }
 }

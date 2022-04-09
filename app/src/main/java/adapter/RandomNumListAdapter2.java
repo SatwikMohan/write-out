@@ -1,5 +1,7 @@
 package adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,12 +9,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigawattstechnology.writeout.R;
 import com.gigawattstechnology.writeout.User;
+import com.gigawattstechnology.writeout.authtransfer;
+import com.gigawattstechnology.writeout.pdfview;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +28,11 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
     private Random random;
     //private String[] name;
     private Set<String> name;
-    public RandomNumListAdapter2(Set<String> name) {
+    Context context;
+    private ArrayList<String> usersn;
+    public RandomNumListAdapter2(Set<String> name,ArrayList<String> usersn) {
         this.name =name;
+        this.usersn=usersn;
     }
 
     @Override
@@ -48,6 +56,8 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
         holder.staron.setImageResource(R.drawable.staron);
         String[] Name = name.toArray(new String[name.size()]);
         holder.getView().setText(Name[position]);
+        String[] U=usersn.toArray(new String[usersn.size()]);
+        holder.othusername.setText(U[position]);
     }
 
     @Override
@@ -55,20 +65,23 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
         return name.size();
     }
 
-
     public class RecyclerViewHolder<onClickListener1> extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView doc,tab,staroff,staron;
         private Button tview;
         private RatingBar ratingBar;
+        private TextView othusername;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            context=itemView.getContext();
             tab=itemView.findViewById(R.id.tabart);
             doc=itemView.findViewById(R.id.tabicon);
+            othusername=itemView.findViewById(R.id.othusername);
             tview = itemView.findViewById(R.id.randomText2);
             staroff=itemView.findViewById(R.id.staroff);
             staron=itemView.findViewById(R.id.staron);
             staroff.setOnClickListener(this);
             staron.setOnClickListener(this);
+            tview.setOnClickListener(this);
             staron.setVisibility(View.INVISIBLE);
             staroff.setVisibility(View.VISIBLE);
         }
@@ -77,8 +90,10 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
             return tview;
         }
 
+
         @Override
         public void onClick(View view) {
+            Toast.makeText(context,"Please Click again",Toast.LENGTH_SHORT).show();
             staroff.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -91,6 +106,15 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
                 public void onClick(View view) {
                     staroff.setVisibility(View.VISIBLE);
                     staron.setVisibility(View.INVISIBLE);
+                }
+            });
+            tview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    authtransfer.storeusername(othusername.getText().toString());
+                    authtransfer.storekey(tview.getText().toString().replace(" ","").replace("/",""));
+                    Intent intent=new Intent(context, pdfview.class);
+                    context.startActivity(intent);
                 }
             });
         }

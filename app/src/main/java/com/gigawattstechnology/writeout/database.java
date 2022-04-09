@@ -1,5 +1,7 @@
 package com.gigawattstechnology.writeout;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -12,13 +14,13 @@ import java.util.ArrayList;
 
 public class database {
     public static long r2;
+    private static final ArrayList<String> keysdata=new ArrayList<>();
+    private static final ArrayList<String> usersdata=new ArrayList<>();
     public static ArrayList<String> namevalueskey=new ArrayList<>();
     public static ArrayList<String> namevalues=new ArrayList<>();
-    private static ArrayList<String> keysdata=new ArrayList<>();
-    private static ArrayList<String> usersdata=new ArrayList<>();
     private static long r;
     public static ArrayList<String> give(){
-       /* DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
         databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -46,11 +48,10 @@ public class database {
 
                 }
             });
-        }*/
+        }
 
-
-        //for(int i=0;i<r;i++) {
-                DatabaseReference fornamevalueskey = FirebaseDatabase.getInstance().getReference().child("Write OUT").child("satwikplay69");
+        for(int i=0;i< r;i++) {
+                DatabaseReference fornamevalueskey = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(usersdata.get(i));
                 fornamevalueskey.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -68,7 +69,7 @@ public class database {
 
                 for (int j = 0; j < r2; j++) {
 
-                    DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference().child("Write OUT").child("satwikplay69").child(namevalueskey.get(j)).child("name");
+                    DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(usersdata.get(i)).child(namevalueskey.get(j)).child("name");
                     fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -82,9 +83,8 @@ public class database {
                     });
 
                 }
-
             namevalueskey.clear();
-        //}
+        }
         return namevalues;
     }
 }

@@ -52,6 +52,7 @@ public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdap
         holder.tab.setImageResource(R.drawable.tabart);
         String[] Name = name.toArray(new String[name.size()]);
         holder.getView().setText(Name[position]);
+        holder.musername.setText(authtransfer.givename());
     }
 
     @Override
@@ -63,21 +64,23 @@ public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdap
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 private ImageView doc,tab;
         public Button tview;
+        private TextView musername;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             context=itemView.getContext();
             tab=itemView.findViewById(R.id.tabart);
             doc=itemView.findViewById(R.id.tabicon);
+            musername=itemView.findViewById(R.id.musername);
             tview = itemView.findViewById(R.id.randomText);
             tview.setOnClickListener(this);
         }
         public Button getView(){
             return tview;
         }
-
+        public TextView stext(){return musername;}
         @Override
         public void onClick(View view) {
-            int position=getLayoutPosition();
+            authtransfer.storeusername(musername.getText().toString());
             authtransfer.storekey(tview.getText().toString().replace(" ","").replace("/",""));
             Intent intent=new Intent(context,pdfview.class);
             context.startActivity(intent);
