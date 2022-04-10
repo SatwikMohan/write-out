@@ -52,24 +52,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My article" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/othersarticle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="other's article" />
-
         <com.google.android.material.tabs.TabItem
             android:id="@+id/myfavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="my favorite" />
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/myratings"
-            android:layout_width="0dp"
+            android:id="@+id/othersarticle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="" />
-
+            android:text="other's article" />
 
     </com.google.android.material.tabs.TabLayout>
 

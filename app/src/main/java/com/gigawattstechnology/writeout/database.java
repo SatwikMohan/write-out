@@ -13,52 +13,53 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class database {
-    public static long r2;
-    private static final ArrayList<String> keysdata=new ArrayList<>();
-    private static final ArrayList<String> usersdata=new ArrayList<>();
-    public static ArrayList<String> namevalueskey=new ArrayList<>();
-    public static ArrayList<String> namevalues=new ArrayList<>();
-    private static long r;
-    public static ArrayList<String> give(){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
-        databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    keysdata.add(postSnapshot.getKey());
-                }
-                r = snapshot.getChildrenCount();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        for (int i = 0; i < r; i++) {
-            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Users").child(keysdata.get(i)).child("name");
-            databaseReference1.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+    ArrayList<String> names=new ArrayList<>();
+    ArrayList<ArrayList<String>> namevalueskey=new ArrayList<>();
+    ArrayList<String> namevalues=new ArrayList<>();
+    int i,j;
+    public void storetheusers(ArrayList<String> names){
+        this.names=names;
+    }
+    public ArrayList<String> givethenamevalues(){
+        for(i=0;i< names.size();i++){
+            DatabaseReference fornamevalueskey = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(names.get(i));
+            fornamevalueskey.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    usersdata.add(snapshot.getValue(String.class));
-                }
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        namevalueskey.get(i).add(postSnapshot.getKey());
+                    }
 
+                }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
-        }
 
-        for(int i=0;i< r;i++) {
-                DatabaseReference fornamevalueskey = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(usersdata.get(i));
-                fornamevalueskey.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+            /*for (j = 0; j < namevalueskey.size(); j++) {
+                DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(names.get(i)).child(namevalueskey.get(j)).child("name");
+                fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                            namevalueskey.add(postSnapshot.getKey());
-                        }
-                        r2 = snapshot.getChildrenCount();
+                        namevalues.add(snapshot.getValue(String.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+            namevalueskey.clear();*/
+        }
+        for(j=0;j< names.size();j++) {
+            for (i = 0; i < namevalueskey.get(j).size(); i++) {
+                DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(names.get(i)).child(namevalueskey.get(j).get(i)).child("name");
+                fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        namevalues.add(snapshot.getValue(String.class));
                     }
 
                     @Override
@@ -67,23 +68,7 @@ public class database {
                     }
                 });
 
-                for (int j = 0; j < r2; j++) {
-
-                    DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference().child("Write OUT").child(usersdata.get(i)).child(namevalueskey.get(j)).child("name");
-                    fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            namevalues.add(snapshot.getValue(String.class));
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-                }
-            namevalueskey.clear();
+            }
         }
         return namevalues;
     }

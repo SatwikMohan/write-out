@@ -52,7 +52,7 @@ public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdap
         holder.tab.setImageResource(R.drawable.tabart);
         String[] Name = name.toArray(new String[name.size()]);
         holder.getView().setText(Name[position]);
-        holder.musername.setText(authtransfer.givename());
+        holder.stext().setText(authtransfer.givename());
     }
 
     @Override

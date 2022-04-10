@@ -45,7 +45,8 @@ public class texttyping extends AppCompatActivity {
     String an, da, aun, ca, auth;
     EditText articletext;
     StorageReference storageReference;
-    DatabaseReference databaseReference, user;
+    DatabaseReference databaseReference;
+    DatabaseReference userarticles;
     FirebaseAuth fAuth;
     double r = Math.random() * 100;
     double s = r;
@@ -149,6 +150,7 @@ public class texttyping extends AppCompatActivity {
     private void sendtofirebase(Uri path) {
         Toast.makeText(texttyping.this,"..Don't Click Anywhere..",Toast.LENGTH_SHORT).show();
         databaseReference = FirebaseDatabase.getInstance().getReference("Write OUT").child(auth.replace(".",""));
+        userarticles=FirebaseDatabase.getInstance().getReference("Articles");
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setTitle(".......File is getting ONLINE.......");
         progressDialog.show();
@@ -164,6 +166,7 @@ public class texttyping extends AppCompatActivity {
                               authtransfer.storeurl(uri.toString());
                              // user.setValue(uri.toString());
                               databaseReference.child(an+""+da.replace("/","")+""+aun+""+ca).setValue(putPDF);
+                              userarticles.child(userarticles.push().getKey()).setValue(putPDF);
                               Toast.makeText(texttyping.this,"Article Published Successfully",Toast.LENGTH_LONG).show();
                               progressDialog.dismiss();
                           }

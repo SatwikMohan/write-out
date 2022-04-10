@@ -29,7 +29,7 @@ import adapter.RandomNumListAdapter2;
 
 
 public class othersarticletab extends Fragment {
-    String[] name={"1","2","3","1","2","3","1","2","3","1","2","3"};
+    String[] name={"satwikg17","satwikplay69"};
     ArrayList<String> users=new ArrayList<>();
     //ArrayList<ArrayList<String>> key=new ArrayList<>();
     ArrayList<String> namevalues=new ArrayList<>();
@@ -37,8 +37,8 @@ public class othersarticletab extends Fragment {
     ArrayList<String> usersn=new ArrayList<>();
     ArrayList<String> userkey=new ArrayList<>();
     long r1,r2;
-    private RecyclerView recyclerView;
-
+    DatabaseReference foruserkey=FirebaseDatabase.getInstance().getReference().child("Users");
+    DatabaseReference forusernames=FirebaseDatabase.getInstance().getReference().child("Users");
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,14 +94,14 @@ public class othersarticletab extends Fragment {
                     }
                 }*/
 /////////////////////////
-        /*DatabaseReference foruserkey=FirebaseDatabase.getInstance().getReference().child("Users");
-        foruserkey.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Articles");
+        databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot postSnapshot : snapshot.getChildren()){
-                    userkey.add(postSnapshot.getKey());
+                for(DataSnapshot postSnapshot: snapshot.getChildren()){
+                    usersn.add(postSnapshot.getKey());
                 }
-                r1= snapshot.getChildrenCount();
             }
 
             @Override
@@ -109,13 +109,12 @@ public class othersarticletab extends Fragment {
 
             }
         });
-
-        for(int i=0;i<r1;i++) {
-            DatabaseReference forusername = FirebaseDatabase.getInstance().getReference().child("Users").child(userkey.get(i)).child("name");
-            forusername.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+        for(int i=0;i< usersn.size();i++) {
+            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Articles").child(usersn.get(i)).child("name");
+            databaseReference1.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        users.add(snapshot.getValue(String.class));
+                    namevalues.add(snapshot.getValue(String.class));
                 }
 
                 @Override
@@ -123,49 +122,13 @@ public class othersarticletab extends Fragment {
 
                 }
             });
-        }*/
-
-        //for(int i=0;i< r1;i++) {
-            //if (users.get(i) != authtransfer.givename()) {
-            DatabaseReference fornamevalueskey = FirebaseDatabase.getInstance().getReference().child("Write OUT").child("satwikplay69");
-            fornamevalueskey.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                        namevalueskey.add(postSnapshot.getKey());
-                    }
-                    r2 = snapshot.getChildrenCount();
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-            for (int j = 0; j < r2; j++) {
-                usersn.add("satwikplay69");
-                DatabaseReference fornamevalues = FirebaseDatabase.getInstance().getReference().child("Write OUT").child("satwikplay69").child(namevalueskey.get(j)).child("name");
-                fornamevalues.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        namevalues.add(snapshot.getValue(String.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-       // }
-            namevalueskey.clear();
-        //}
-       Set<String> nameset=new HashSet<>(namevalues);
-        recyclerView = view.findViewById(R.id.recyclerview);
+        }
+      Set<String> nameset=new HashSet<>(namevalues);
+        Set<String> usersnset=new HashSet<>(usersn);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter2(nameset,usersn));
+        recyclerView.setAdapter(new RandomNumListAdapter2(nameset,usersnset));
         return view;
     }
 }

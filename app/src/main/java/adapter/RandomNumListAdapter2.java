@@ -18,6 +18,7 @@ import com.gigawattstechnology.writeout.R;
 import com.gigawattstechnology.writeout.User;
 import com.gigawattstechnology.writeout.authtransfer;
 import com.gigawattstechnology.writeout.pdfview;
+import com.gigawattstechnology.writeout.pdfviewoth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
     //private String[] name;
     private Set<String> name;
     Context context;
-    private ArrayList<String> usersn;
-    public RandomNumListAdapter2(Set<String> name,ArrayList<String> usersn) {
+    private Set<String> usersn;
+    public RandomNumListAdapter2(Set<String> name,Set<String> usersn) {
         this.name =name;
         this.usersn=usersn;
     }
@@ -89,6 +90,7 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
         public Button getView(){
             return tview;
         }
+        public TextView text(){return othusername;}
 
 
         @Override
@@ -111,9 +113,8 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
             tview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    authtransfer.storeusername(othusername.getText().toString());
-                    authtransfer.storekey(tview.getText().toString().replace(" ","").replace("/",""));
-                    Intent intent=new Intent(context, pdfview.class);
+                    authtransfer.storekey(othusername.getText().toString());
+                    Intent intent=new Intent(context, pdfviewoth.class);
                     context.startActivity(intent);
                 }
             });

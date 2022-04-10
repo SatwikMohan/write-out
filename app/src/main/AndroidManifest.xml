@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WriteOUT">
         <activity
+            android:name=".pdfviewoth"
+            android:exported="false" />
+        <activity
             android:name=".userlist"
             android:exported="false" />
         <activity
