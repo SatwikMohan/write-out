@@ -42,7 +42,7 @@ TextView profile;
         viewPager=findViewById(R.id.vpager);
         tabLayout.setupWithViewPager(viewPager);
         //viewPager.setOffscreenPageLimit(4);
-        PageAdapter pageAdapter=new PageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        PageAdapter pageAdapter=new PageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_SET_USER_VISIBLE_HINT);
         pageAdapter.addFragment(new myarticletab(),"My Articles");
         pageAdapter.addFragment(new myfavoritetab(),"My Favorites");
         pageAdapter.addFragment(new othersarticletab(),"Other's Articles");
