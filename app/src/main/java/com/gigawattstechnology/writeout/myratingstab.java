@@ -37,7 +37,7 @@ ArrayList<String> userkey=new ArrayList<>();
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myratingstab, container, false);
-        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Users");
+        /*DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Users");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,14 +101,13 @@ ArrayList<String> userkey=new ArrayList<>();
         }
         namevalueskey.clear();
     }*/
-
-        Set<String> nameset=new HashSet<>(name);
-        Set<String> namevaluesset=new HashSet<>(database.givethenamevalues());
-        recyclerView = view.findViewById(R.id.recyclerview);
+/*name.add("11");name.add("10");name.add("9");name.add("8");name.add("7");name.add("6");name.add("5");name.add("4");name.add("3");name.add("2");name.add("1");
+        Set<String> nameset=new HashSet<>(name);*/
+        /*Set<String> namevaluesset=new HashSet<>(database.givethenamevalues());*/
+        /*recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter4(nameset,namevaluesset));
-        userkey.clear();
+        recyclerView.setAdapter(new RandomNumListAdapter4(nameset));*/
         return view;
     }
 }

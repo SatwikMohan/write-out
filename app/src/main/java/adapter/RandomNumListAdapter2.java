@@ -107,7 +107,7 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
                     staroff.setVisibility(View.INVISIBLE);
                     staron.setVisibility(View.VISIBLE);
                     DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(othusername.getText().toString()).child("favorite").child(authtransfer.givename());
-                    favorite.setValue("*");
+                    favorite.setValue(tview.getText().toString());
                 }
             });
             staron.setOnClickListener(new View.OnClickListener() {

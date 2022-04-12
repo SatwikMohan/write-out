@@ -1,8 +1,10 @@
 package com.gigawattstechnology.writeout;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,12 +33,13 @@ public class myfavoritetab extends Fragment {
     private RecyclerView recyclerView;
 ArrayList<String> key=new ArrayList<>();
 ArrayList<String> favorite=new ArrayList<>();
+     @RequiresApi(api = Build.VERSION_CODES.N)
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myfavoritetab, container, false);
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Articles");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
               for(DataSnapshot postSnapshot: snapshot.getChildren()){
@@ -50,11 +53,16 @@ ArrayList<String> favorite=new ArrayList<>();
             }
         });
         for(int i=0;i<key.size();i++){
-            DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Articles").child(key.get(i)).child(authtransfer.givename());
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Articles").child(key.get(i)).child("favorite").child(authtransfer.givename());
+            int finalI = i;
+            databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     favorite.add(snapshot.getValue(String.class));
+                    if(snapshot.getValue(String.class).equals("#"))
+                    {
+                        key.remove(finalI);
+                    }
                 }
 
                 @Override
@@ -63,12 +71,14 @@ ArrayList<String> favorite=new ArrayList<>();
                 }
             });
         }
-        favorite.removeAll(Collections.singleton("#"));
+        favorite.removeIf(n -> n.equals("#"));
         Set<String> favoriteset=new HashSet<>(favorite);
+        Set<String> keyset=new HashSet<>(key);
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter3(favoriteset));
+        recyclerView.setAdapter(new RandomNumListAdapter3(favoriteset,keyset));
+        favorite.clear();
         return view;
     }
 }

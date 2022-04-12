@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 public class authtransfer {
     private static String name,url,key,username;
+    private static int num;
     public static void storename(String storename){
         name=storename;
     }
@@ -28,4 +29,6 @@ public class authtransfer {
     public static String giveusername(){
         return username;
     }
+    public static void storerating(int number){num=number;}
+    public static int giverating(){return num;}
 }

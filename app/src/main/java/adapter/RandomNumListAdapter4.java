@@ -19,14 +19,13 @@ public class RandomNumListAdapter4 extends RecyclerView.Adapter<RandomNumListAda
     private Random random;
     private Set<String> name;
     private Set<String> namevalues;
-    public RandomNumListAdapter4(Set<String> name,Set<String> namevalues) {
+    public RandomNumListAdapter4(Set<String> name) {
         this.name =name;
-        this.namevalues=namevalues;
     }
 
     @Override
     public int getItemViewType(final int position) {
-        return R.layout.item;
+        return R.layout.fragmentmyratings_textview;
     }
 
     @NonNull
@@ -40,11 +39,7 @@ public class RandomNumListAdapter4 extends RecyclerView.Adapter<RandomNumListAda
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         String[] Name=name.toArray(new String[name.size()]);
-        String[] Nameval=namevalues.toArray(new String[namevalues.size()]);
         holder.getView().setText(Name[position]);
-        holder.head.setText("Name: ");
-        holder.article.setText("Article: ");
-        holder.artname.setText(Nameval[position]);
     }
 
     @Override
@@ -58,10 +53,8 @@ public class RandomNumListAdapter4 extends RecyclerView.Adapter<RandomNumListAda
         private TextView view,head,article,artname;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            view = itemView.findViewById(R.id.name);
-            head=itemView.findViewById(R.id.head);
-            article=itemView.findViewById(R.id.article);
-            artname=itemView.findViewById(R.id.artname);
+            view = itemView.findViewById(R.id.randomText4);
+
         }
 
         public TextView getView(){
