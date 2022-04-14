@@ -165,10 +165,9 @@ public class texttyping extends AppCompatActivity {
                               putPDF putPDF=new putPDF(an+" "+da+" "+aun+" "+ca,uri.toString());
                               authtransfer.storeurl(uri.toString());
                              // user.setValue(uri.toString());
-                              databaseReference.child(an+""+da.replace("/","")+""+aun+""+ca).setValue(putPDF);
-                              String s=userarticles.push().getKey();
-                              userarticles.child(s).setValue(putPDF);
-                              userarticles=FirebaseDatabase.getInstance().getReference().child("Articles").child(s).child("favorite").child(authtransfer.givename());
+                              databaseReference.child(an+""+da.replace("/","")+""+aun+""+ca.replace(" ","")).setValue(putPDF);
+                              userarticles.child(an+""+da.replace("/","")+""+aun+""+ca.replace(" ","")).setValue(putPDF);
+                              userarticles=FirebaseDatabase.getInstance().getReference().child("Articles").child(an+""+da.replace("/","")+""+aun+""+ca).child("favorite").child(authtransfer.givename());
                               userarticles.setValue("#");
                               Toast.makeText(texttyping.this,"Article Published Successfully",Toast.LENGTH_LONG).show();
                               progressDialog.dismiss();

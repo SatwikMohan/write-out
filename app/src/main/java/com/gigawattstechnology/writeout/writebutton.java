@@ -32,7 +32,7 @@ RadioButton radioButton;
 MediaPlayer player;
 DatePickerDialog.OnDateSetListener setListener;
 String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission=" ";
-    String[] items={"Fiction","Scientific facts","Opinions","Drama"};
+    String[] items={"Fiction","ScientificFacts","Opinions","Drama"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
     @Override

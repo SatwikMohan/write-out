@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,11 +34,13 @@ public class myfavoritetab extends Fragment {
     private RecyclerView recyclerView;
 ArrayList<String> key=new ArrayList<>();
 ArrayList<String> favorite=new ArrayList<>();
+TextView textView;
      @RequiresApi(api = Build.VERSION_CODES.N)
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myfavoritetab, container, false);
+        textView=view.findViewById(R.id.nothing);
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Articles");
         reference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
@@ -54,15 +57,12 @@ ArrayList<String> favorite=new ArrayList<>();
         });
         for(int i=0;i<key.size();i++){
             DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Articles").child(key.get(i)).child("favorite").child(authtransfer.givename());
-            int finalI = i;
+
             databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     favorite.add(snapshot.getValue(String.class));
-                    if(snapshot.getValue(String.class).equals("#"))
-                    {
-                        key.remove(finalI);
-                    }
+
                 }
 
                 @Override
@@ -77,19 +77,18 @@ ArrayList<String> favorite=new ArrayList<>();
             key.add("no more articles in here");
         }*/
         favorite.removeIf(n -> n.equals("#"));
-        /*if(favorite.size()==0){
-            favorite.add("no more articles in here");
-        }else{
-            favorite.removeIf(t -> t.equals("no more articles in here"));
-        }*/
-        Set<String> favoriteset=new HashSet<>(favorite);
-        Set<String> keyset=new HashSet<>(key);
-        recyclerView = view.findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter3(favoriteset,keyset));
-        favorite.clear();
-        key.clear();
+        if(favorite.size()==0){
+            textView.setVisibility(View.VISIBLE);
+        }else {
+            textView.setVisibility(View.INVISIBLE);
+            Set<String> favoriteset = new HashSet<>(favorite);
+            recyclerView = view.findViewById(R.id.recyclerview);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+            recyclerView.setAdapter(new RandomNumListAdapter3(favoriteset));
+            favorite.clear();
+            key.clear();
+        }
         return view;
     }
 }

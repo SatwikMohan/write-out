@@ -26,10 +26,10 @@ import java.util.Set;
 public class RandomNumListAdapter3 extends RecyclerView.Adapter<RandomNumListAdapter3.RecyclerViewHolder> {
     private Random random;
     private Set<String> name;
-    private Set<String> key;
-    public RandomNumListAdapter3(Set<String> name,Set<String> key) {
+
+    public RandomNumListAdapter3(Set<String> name) {
         this.name =name;
-        this.key=key;
+
     }
 
     @Override
@@ -51,8 +51,6 @@ public class RandomNumListAdapter3 extends RecyclerView.Adapter<RandomNumListAda
         holder.tab.setImageResource(R.drawable.tabart);
         String[] Name=name.toArray(new String[name.size()]);
         holder.getView().setText(Name[position]);
-        String[] Key=key.toArray(new String[key.size()]);
-        holder.keytext.setText(Key[position]);
     }
 
     @Override
@@ -74,7 +72,6 @@ public class RandomNumListAdapter3 extends RecyclerView.Adapter<RandomNumListAda
             favstaroff=itemView.findViewById(R.id.favstaroff);
             favstaron=itemView.findViewById(R.id.favstaron);
             bview = itemView.findViewById(R.id.randomText3);
-            keytext=itemView.findViewById(R.id.textView10);
             bview.setOnClickListener(this);
             favstaron.setOnClickListener(this);
             favstaroff.setOnClickListener(this);
@@ -92,7 +89,7 @@ public class RandomNumListAdapter3 extends RecyclerView.Adapter<RandomNumListAda
                 public void onClick(View view) {
                     favstaron.setVisibility(View.INVISIBLE);
                     favstaroff.setVisibility(View.VISIBLE);
-                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(keytext.getText().toString()).child("favorite").child(authtransfer.givename());
+                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(bview.getText().toString().replace(" ","").replace("/","")).child("favorite").child(authtransfer.givename());
                     favorite.setValue("#");
                     Toast.makeText(context,"Will be removed on next re-load",Toast.LENGTH_LONG).show();
                 }
@@ -102,7 +99,7 @@ public class RandomNumListAdapter3 extends RecyclerView.Adapter<RandomNumListAda
                 public void onClick(View view) {
                     favstaron.setVisibility(View.VISIBLE);
                     favstaroff.setVisibility(View.INVISIBLE);
-                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(keytext.getText().toString()).child("favorite").child(authtransfer.givename());
+                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(bview.getText().toString().replace(" ","").replace("/","")).child("favorite").child(authtransfer.givename());
                     favorite.setValue(bview.getText().toString());
                     Toast.makeText(context,"Re-added to favorites",Toast.LENGTH_LONG).show();
                 }

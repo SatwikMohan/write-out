@@ -37,14 +37,16 @@ public class othersarticletab extends Fragment {
     ArrayList<String> namevalueskey=new ArrayList<>();
     ArrayList<String> usersn=new ArrayList<>();
     ArrayList<String> userkey=new ArrayList<>();
+    RecyclerView recyclerView;
     long r1,r2;
+    SearchView searchView;
     DatabaseReference foruserkey=FirebaseDatabase.getInstance().getReference().child("Users");
     DatabaseReference forusernames=FirebaseDatabase.getInstance().getReference().child("Users");
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_othersarticletab, container, false);
-
+        searchView=view.findViewById(R.id.searchViewoth);
         /*DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference("Write OUT");
         ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
@@ -125,11 +127,35 @@ public class othersarticletab extends Fragment {
             });
         }
       Set<String> nameset=new HashSet<>(namevalues);
-        Set<String> usersnset=new HashSet<>(usersn);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        //Set<String> usersnset=new HashSet<>(usersn);
+        recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter2(nameset,usersnset));
+        recyclerView.setAdapter(new RandomNumListAdapter2(nameset));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                search(s);
+                return true;
+            }
+        });
         return view;
+    }
+    private void search(String s) {
+        ArrayList<String> mylist=new ArrayList<>();
+        ArrayList<String> mylistkey=new ArrayList<>();
+        for(String object: namevalues ){
+            if(object.toLowerCase().contains(s.toLowerCase())){
+                mylist.add(object);
+            }
+        }
+        Set<String> set=new HashSet<>(mylist);
+        RandomNumListAdapter2 randomNumListAdapter2=new RandomNumListAdapter2(set);
+        recyclerView.setAdapter(randomNumListAdapter2);
     }
 }

@@ -36,9 +36,8 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
     private Set<String> name;
     Context context;
     private Set<String> usersn;
-    public RandomNumListAdapter2(Set<String> name,Set<String> usersn) {
+    public RandomNumListAdapter2(Set<String> name) {
         this.name =name;
-        this.usersn=usersn;
     }
 
     @Override
@@ -62,8 +61,8 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
         holder.staron.setImageResource(R.drawable.staron);
         String[] Name = name.toArray(new String[name.size()]);
         holder.getView().setText(Name[position]);
-        String[] U=usersn.toArray(new String[usersn.size()]);
-        holder.othusername.setText(U[position]);
+        //String[] U=usersn.toArray(new String[usersn.size()]);
+        //holder.othusername.setText(U[position]);
     }
 
     @Override
@@ -81,7 +80,7 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
             context=itemView.getContext();
             tab=itemView.findViewById(R.id.tabart);
             doc=itemView.findViewById(R.id.tabicon);
-            othusername=itemView.findViewById(R.id.othusername);
+            //othusername=itemView.findViewById(R.id.othusername);
             tview = itemView.findViewById(R.id.randomText2);
             staroff=itemView.findViewById(R.id.staroff);
             staron=itemView.findViewById(R.id.staron);
@@ -106,7 +105,7 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
                 public void onClick(View view) {
                     staroff.setVisibility(View.INVISIBLE);
                     staron.setVisibility(View.VISIBLE);
-                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(othusername.getText().toString()).child("favorite").child(authtransfer.givename());
+                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(tview.getText().toString().replace(" ","").replace("/","")).child("favorite").child(authtransfer.givename());
                     favorite.setValue(tview.getText().toString());
                 }
             });
@@ -115,14 +114,14 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
                 public void onClick(View view) {
                     staroff.setVisibility(View.VISIBLE);
                     staron.setVisibility(View.INVISIBLE);
-                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(othusername.getText().toString()).child("favorite").child(authtransfer.givename());
+                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(tview.getText().toString().replace(" ","").replace("/","")).child("favorite").child(authtransfer.givename());
                    favorite.setValue("#");
                 }
             });
             tview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    authtransfer.storekey(othusername.getText().toString());
+                    authtransfer.storekey(tview.getText().toString().replace(" ","").replace("/",""));
                     Intent intent=new Intent(context, pdfviewoth.class);
                     context.startActivity(intent);
                 }
