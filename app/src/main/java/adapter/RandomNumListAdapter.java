@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,11 +28,11 @@ import java.util.Set;
 
 public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdapter.RecyclerViewHolder> {
 //private ArrayList<String> name=new ArrayList<>();
-    Set<String> name,key;
+    Set<String> name;
     Context context;
-    public RandomNumListAdapter(Set<String> name,Set<String> key) {
+    public RandomNumListAdapter(Set<String> name) {
         this.name =name;
-        this.key=key;
+
     }
 
     @Override
@@ -59,7 +61,6 @@ public class RandomNumListAdapter extends RecyclerView.Adapter<RandomNumListAdap
     public int getItemCount() {
         return name.size();
     }
-
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 private ImageView doc,tab;

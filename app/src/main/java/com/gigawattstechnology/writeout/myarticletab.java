@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import adapter.RandomNumListAdapter;
@@ -40,7 +42,7 @@ public class myarticletab extends Fragment  {
     int i,c=0;
     long r;
     TextView mytext;
-
+    SearchView searchView;
     /*RecyclerView recyclerView;
     DatabaseReference database;
     MyAdapter myAdapter;
@@ -50,6 +52,7 @@ public class myarticletab extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myarticletab, container, false);
+        searchView=view.findViewById(R.id.searchView);
             DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename());
             ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
@@ -80,9 +83,21 @@ public class myarticletab extends Fragment  {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter(s,k));
-        key.clear();
-        name.clear();
+        RandomNumListAdapter randomNumListAdapter=new RandomNumListAdapter(s);
+        recyclerView.setAdapter(randomNumListAdapter);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                search(s);
+                return true;
+            }
+        });
 
         /*recyclerView=view.findViewById(R.id.userList);
         recyclerView.setHasFixedSize(true);
@@ -119,7 +134,18 @@ public class myarticletab extends Fragment  {
             });
         }
         myAdapter.notifyDataSetChanged();*/
-
         return view;
+    }
+
+    private void search(String s) {
+        ArrayList<String> mylist=new ArrayList<>();
+        for(String object: name ){
+            if(object.toLowerCase().contains(s.toLowerCase())){
+                mylist.add(object);
+            }
+        }
+        Set<String> set=new HashSet<>(mylist);
+        RandomNumListAdapter randomNumListAdapter=new RandomNumListAdapter(set);
+        recyclerView.setAdapter(randomNumListAdapter);
     }
 }

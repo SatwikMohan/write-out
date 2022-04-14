@@ -15,6 +15,7 @@
         android:textColor="#FF0057"
         android:textSize="18sp"
         android:textStyle="bold|italic"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
@@ -52,16 +53,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My article" />
+
         <com.google.android.material.tabs.TabItem
             android:id="@+id/myfavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="my favorite" />
+
         <com.google.android.material.tabs.TabItem
             android:id="@+id/othersarticle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="other's article" />
+
         <com.google.android.material.tabs.TabItem
             android:id="@+id/myratings"
             android:layout_width="wrap_content"
@@ -73,14 +77,14 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpager"
         android:layout_width="417dp"
-        android:layout_height="487dp"
+        android:layout_height="540dp"
+        android:layout_marginTop="59dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck">
-
 
     </androidx.viewpager.widget.ViewPager>
 

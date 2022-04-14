@@ -71,7 +71,17 @@ ArrayList<String> favorite=new ArrayList<>();
                 }
             });
         }
+        /*if(favorite.size()==0){
+            favorite.add("no more articles in here");
+            key.clear();
+            key.add("no more articles in here");
+        }*/
         favorite.removeIf(n -> n.equals("#"));
+        /*if(favorite.size()==0){
+            favorite.add("no more articles in here");
+        }else{
+            favorite.removeIf(t -> t.equals("no more articles in here"));
+        }*/
         Set<String> favoriteset=new HashSet<>(favorite);
         Set<String> keyset=new HashSet<>(key);
         recyclerView = view.findViewById(R.id.recyclerview);
@@ -79,6 +89,7 @@ ArrayList<String> favorite=new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(new RandomNumListAdapter3(favoriteset,keyset));
         favorite.clear();
+        key.clear();
         return view;
     }
 }

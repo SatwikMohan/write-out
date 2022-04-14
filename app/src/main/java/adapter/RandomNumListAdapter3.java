@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gigawattstechnology.writeout.R;
 import com.gigawattstechnology.writeout.authtransfer;
 import com.gigawattstechnology.writeout.pdfviewoth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -60,28 +62,52 @@ public class RandomNumListAdapter3 extends RecyclerView.Adapter<RandomNumListAda
 
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView doc,tab;
+        private ImageView doc,tab,favstaron,favstaroff;
         Context context;
-        private Button view;
+        private Button bview;
         private TextView keytext;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             context= itemView.getContext();
             tab=itemView.findViewById(R.id.tabart);
             doc=itemView.findViewById(R.id.tabicon);
-            view = itemView.findViewById(R.id.randomText3);
+            favstaroff=itemView.findViewById(R.id.favstaroff);
+            favstaron=itemView.findViewById(R.id.favstaron);
+            bview = itemView.findViewById(R.id.randomText3);
             keytext=itemView.findViewById(R.id.textView10);
-            view.setOnClickListener(this);
+            bview.setOnClickListener(this);
+            favstaron.setOnClickListener(this);
+            favstaroff.setOnClickListener(this);
         }
 
         public Button getView(){
-            return view;
+            return bview;
         }
 
         @Override
         public void onClick(View view) {
             Toast.makeText(context,"Please Click again",Toast.LENGTH_SHORT).show();
-            view.setOnClickListener(new View.OnClickListener() {
+            favstaron.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    favstaron.setVisibility(View.INVISIBLE);
+                    favstaroff.setVisibility(View.VISIBLE);
+                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(keytext.getText().toString()).child("favorite").child(authtransfer.givename());
+                    favorite.setValue("#");
+                    Toast.makeText(context,"Will be removed on next re-load",Toast.LENGTH_LONG).show();
+                }
+            });
+            favstaroff.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    favstaron.setVisibility(View.VISIBLE);
+                    favstaroff.setVisibility(View.INVISIBLE);
+                    DatabaseReference favorite= FirebaseDatabase.getInstance().getReference("Articles").child(keytext.getText().toString()).child("favorite").child(authtransfer.givename());
+                    favorite.setValue(bview.getText().toString());
+                    Toast.makeText(context,"Re-added to favorites",Toast.LENGTH_LONG).show();
+                }
+            });
+            bview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     authtransfer.storekey(keytext.getText().toString());
