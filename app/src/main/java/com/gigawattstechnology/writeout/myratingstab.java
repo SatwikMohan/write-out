@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +34,7 @@ ArrayList<String> userkey=new ArrayList<>();
     ArrayList<String> namevalueskey=new ArrayList<>();
     ArrayList<String> namevalues=new ArrayList<>();
     database database=new database();
+    TextView nameauth,articlepublishedcount,totalfavoritescount;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -108,6 +110,12 @@ ArrayList<String> userkey=new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(new RandomNumListAdapter4(nameset));*/
+        nameauth=view.findViewById(R.id.nameauth);
+        nameauth.setText(authtransfer.givename());
+        articlepublishedcount=view.findViewById(R.id.articlepublishedcount);
+        articlepublishedcount.setText(""+authtransfer.givearticlepublished());
+        totalfavoritescount=view.findViewById(R.id.totalfavoritescount);
+        totalfavoritescount.setText(""+authtransfer.givetotalfavorites());
         return view;
     }
 }

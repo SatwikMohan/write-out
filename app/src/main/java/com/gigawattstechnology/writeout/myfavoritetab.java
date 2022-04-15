@@ -83,9 +83,11 @@ SearchView searchView;
         favorite.removeIf(n -> n.equals("#"));
         if(favorite.size()==0){
             textView.setVisibility(View.VISIBLE);
+            authtransfer.storetotalfavorites(favorite.size());
         }else {
             textView.setVisibility(View.INVISIBLE);
             Set<String> favoriteset = new HashSet<>(favorite);
+            authtransfer.storetotalfavorites(favoriteset.size());
             recyclerView = view.findViewById(R.id.recyclerview);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

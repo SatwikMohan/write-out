@@ -17,9 +17,6 @@
             android:name=".pdfviewoth"
             android:exported="false" />
         <activity
-            android:name=".userlist"
-            android:exported="false" />
-        <activity
             android:name=".pdfview"
             android:exported="false" />
         <activity
