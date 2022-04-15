@@ -107,7 +107,7 @@ public class RandomNumListAdapter3 extends RecyclerView.Adapter<RandomNumListAda
             bview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    authtransfer.storekey(keytext.getText().toString());
+                    authtransfer.storekey(bview.getText().toString().replace(" ","").replace("/",""));
                     Intent intent=new Intent(context, pdfviewoth.class);
                     context.startActivity(intent);
                 }

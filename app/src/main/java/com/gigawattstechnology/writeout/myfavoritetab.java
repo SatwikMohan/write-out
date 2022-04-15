@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import adapter.RandomNumListAdapter;
+import adapter.RandomNumListAdapter2;
 import adapter.RandomNumListAdapter3;
 
 
@@ -35,11 +37,13 @@ public class myfavoritetab extends Fragment {
 ArrayList<String> key=new ArrayList<>();
 ArrayList<String> favorite=new ArrayList<>();
 TextView textView;
+SearchView searchView;
      @RequiresApi(api = Build.VERSION_CODES.N)
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myfavoritetab, container, false);
+        searchView=view.findViewById(R.id.searchViewfav);
         textView=view.findViewById(R.id.nothing);
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Articles");
         reference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
@@ -86,9 +90,31 @@ TextView textView;
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
             recyclerView.setAdapter(new RandomNumListAdapter3(favoriteset));
-            favorite.clear();
-            key.clear();
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    search(s);
+                    return true;
+                }
+            });
         }
         return view;
     }
+        private void search(String s) {
+            ArrayList<String> mylist=new ArrayList<>();
+            for(String object: favorite ){
+                if(object.toLowerCase().contains(s.toLowerCase())){
+                    mylist.add(object);
+                }
+            }
+            Set<String> set=new HashSet<>(mylist);
+            RandomNumListAdapter3 randomNumListAdapter3=new RandomNumListAdapter3(set);
+            recyclerView.setAdapter(randomNumListAdapter3);
+        }
+
 }
