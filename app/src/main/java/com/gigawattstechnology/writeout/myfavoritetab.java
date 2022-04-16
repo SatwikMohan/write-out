@@ -55,8 +55,9 @@ SearchView searchView;
                   databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                       @Override
                       public void onDataChange(@NonNull DataSnapshot snapshot) {
-                          favorite.add(snapshot.getValue(String.class));
-
+                          if(snapshot.getValue(String.class)!=null) {
+                              favorite.add(snapshot.getValue(String.class));
+                          }
                       }
 
                       @Override

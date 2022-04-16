@@ -35,6 +35,7 @@ public class myarticletab extends Fragment  {
     long r;
     TextView mytext;
     SearchView searchView;
+    TextView textView;
     /*RecyclerView recyclerView;
     DatabaseReference database;
     MyAdapter myAdapter;
@@ -45,7 +46,7 @@ public class myarticletab extends Fragment  {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myarticletab, container, false);
         searchView=view.findViewById(R.id.searchView);
-
+        textView=view.findViewById(R.id.nothing2);
             DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename());
             ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
@@ -82,27 +83,31 @@ public class myarticletab extends Fragment  {
                     }
                 });
             }*/
-        Set<String> s=new HashSet<>(name);
-        authtransfer.storearticlepublished(s.size());
-        recyclerView = view.findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        RandomNumListAdapter randomNumListAdapter=new RandomNumListAdapter(s);
-        recyclerView.setAdapter(randomNumListAdapter);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
+        if(name.size()==0){
+            textView.setVisibility(View.VISIBLE);
+        }else {
+            textView.setVisibility(View.INVISIBLE);
+            Set<String> s = new HashSet<>(name);
+            authtransfer.storearticlepublished(s.size());
+            recyclerView = view.findViewById(R.id.recyclerview);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+            RandomNumListAdapter randomNumListAdapter = new RandomNumListAdapter(s);
+            recyclerView.setAdapter(randomNumListAdapter);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
 
-                return false;
-            }
+                    return false;
+                }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                search(s);
-                return true;
-            }
-        });
-
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    search(s);
+                    return true;
+                }
+            });
+        }
 
         return view;
     }

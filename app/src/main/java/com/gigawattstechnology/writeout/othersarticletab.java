@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,7 @@ public class othersarticletab extends Fragment {
     RecyclerView recyclerView;
     long r1,r2;
     SearchView searchView;
+    TextView textView;
     DatabaseReference foruserkey=FirebaseDatabase.getInstance().getReference().child("Users");
     DatabaseReference forusernames=FirebaseDatabase.getInstance().getReference().child("Users");
     @Override
@@ -47,6 +49,7 @@ public class othersarticletab extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_othersarticletab, container, false);
         searchView=view.findViewById(R.id.searchViewoth);
+        textView=view.findViewById(R.id.nothing3);
         /*DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference("Write OUT");
         ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
@@ -138,24 +141,29 @@ public class othersarticletab extends Fragment {
                 }
             });
         }*/
-      Set<String> nameset=new HashSet<>(namevalues);
-        //Set<String> usersnset=new HashSet<>(usersn);
-        recyclerView = view.findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new RandomNumListAdapter2(nameset));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+        if(namevalues.size()==0){
+            textView.setVisibility(View.VISIBLE);
+        }else {
+            textView.setVisibility(View.INVISIBLE);
+            Set<String> nameset = new HashSet<>(namevalues);
+            //Set<String> usersnset=new HashSet<>(usersn);
+            recyclerView = view.findViewById(R.id.recyclerview);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+            recyclerView.setAdapter(new RandomNumListAdapter2(nameset));
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                search(s);
-                return true;
-            }
-        });
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    search(s);
+                    return true;
+                }
+            });
+        }
         return view;
     }
     private void search(String s) {
