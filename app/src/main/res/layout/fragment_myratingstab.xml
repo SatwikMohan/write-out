@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="210dp"
         android:text="totalfavoritescount"
         android:textColor="#FF0000"
         android:textSize="24sp"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="89dp"
+        android:layout_marginTop="109dp"
         android:text="articlepublishedcount"
         android:textColor="#FF0000"
         android:textSize="24sp"
@@ -35,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="140dp"
-        android:text="totalfavorites"
+        android:layout_marginTop="160dp"
+        android:text="Your Total Favorites"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -46,14 +46,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:text="articlepublished"
+        android:layout_marginTop="60dp"
+        android:text="Your Article Published"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/nameauth"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -61,4 +62,13 @@
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="280dp"
+        android:text="Log out"
+        />
 </FrameLayout>

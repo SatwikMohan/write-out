@@ -1,5 +1,9 @@
 package com.gigawattstechnology.writeout;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,8 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,10 +43,16 @@ ArrayList<String> userkey=new ArrayList<>();
     ArrayList<String> namevalues=new ArrayList<>();
     database database=new database();
     TextView nameauth,articlepublishedcount,totalfavoritescount;
+    Button logout;
+    FirebaseAuth fauth;
+    Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myratingstab, container, false);
+        logout=view.findViewById(R.id.logout);
+        fauth=FirebaseAuth.getInstance();
+        context=getContext();
         /*DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Users");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -116,6 +130,20 @@ ArrayList<String> userkey=new ArrayList<>();
         articlepublishedcount.setText(""+authtransfer.givearticlepublished());
         totalfavoritescount=view.findViewById(R.id.totalfavoritescount);
         totalfavoritescount.setText(""+authtransfer.givetotalfavorites());
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*fauth.signOut();
+                Intent intent = new Intent(getContext(),writeout.class);
+                startActivity(intent);*/
+                PackageManager packageManager = context.getPackageManager();
+                Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
+                ComponentName componentName = intent.getComponent();
+                Intent mainIntent = Intent.makeRestartActivityTask(componentName);
+                context.startActivity(mainIntent);
+                Runtime.getRuntime().exit(0);
+            }
+        });
         return view;
     }
 }
