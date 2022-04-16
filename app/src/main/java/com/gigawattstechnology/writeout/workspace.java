@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
@@ -52,6 +53,16 @@ TextView profile;
         tabLayout.setupWithViewPager(viewPager);
         profile.setText(getIntent().getStringExtra("auth"));
         authtransfer.storename(profile.getText().toString());
+        final Handler handler=new Handler();
+        for(int i=0;i<4;i++){
+            int finalI = i;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    viewPager.setCurrentItem(finalI);
+                }
+            },250);
+        }
     }
     public void writebutton(View view)
     {

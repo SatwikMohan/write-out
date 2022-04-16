@@ -17,8 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gigawattstechnology.writeout.R;
 import com.gigawattstechnology.writeout.authtransfer;
 import com.gigawattstechnology.writeout.pdfviewoth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 import java.util.Set;
@@ -56,6 +59,29 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
         holder.getView().setText(Name[position]);
         //String[] U=usersn.toArray(new String[usersn.size()]);
         //holder.othusername.setText(U[position]);
+        DatabaseReference favorite1= FirebaseDatabase.getInstance().getReference("Articles").child(holder.getView().getText().toString().replace(" ","").replace("/","")).child("favorite").child(authtransfer.givename());
+        favorite1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue(String.class)!=null){
+                    if(snapshot.getValue(String.class).equals("#")){
+                        holder.staron.setVisibility(View.INVISIBLE);
+                        holder.staroff.setVisibility(View.VISIBLE);
+                    } else{
+                        holder.staron.setVisibility(View.VISIBLE);
+                        holder.staroff.setVisibility(View.INVISIBLE);
+                    }
+                }else{
+                    holder.staron.setVisibility(View.INVISIBLE);
+                    holder.staroff.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -80,8 +106,6 @@ public class RandomNumListAdapter2 extends RecyclerView.Adapter<RandomNumListAda
             staroff.setOnClickListener(this);
             staron.setOnClickListener(this);
             tview.setOnClickListener(this);
-            staron.setVisibility(View.INVISIBLE);
-            staroff.setVisibility(View.VISIBLE);
         }
 
         public Button getView(){
