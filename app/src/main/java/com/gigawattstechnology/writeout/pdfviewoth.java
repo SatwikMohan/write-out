@@ -3,6 +3,7 @@ package com.gigawattstechnology.writeout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ PDFView pdfviewoth;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfviewoth);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         text2=findViewById(R.id.text2);
         pdfviewoth=findViewById(R.id.pdfviewoth);
         mref.addValueEventListener(new ValueEventListener() {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
@@ -31,6 +32,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +57,7 @@ public class texttyping extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_texttyping);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         articlename = findViewById(R.id.namefinal);
         fAuth = FirebaseAuth.getInstance();
         date = findViewById(R.id.datefinal);
@@ -70,6 +73,7 @@ public class texttyping extends AppCompatActivity {
         category.setText(ca);
         articletext = findViewById(R.id.articletext);
         storageReference = FirebaseStorage.getInstance().getReference();
+        Toast.makeText(texttyping.this,"-SCROLL UP TO PUBLISH-",Toast.LENGTH_LONG).show();
 
     }
     public void publish(View view)

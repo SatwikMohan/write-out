@@ -3,6 +3,7 @@ package com.gigawattstechnology.writeout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,6 +15,7 @@ ProgressBar progress;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         progress=findViewById(R.id.progressBar);
         getSupportActionBar().hide();
         progress.setVisibility(View.VISIBLE);

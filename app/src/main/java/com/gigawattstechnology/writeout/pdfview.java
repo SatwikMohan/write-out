@@ -3,6 +3,7 @@ package com.gigawattstechnology.writeout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ DatabaseReference mref= fd.getReference("Write OUT").child(authtransfer.giveuser
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfview);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         pdfView=findViewById(R.id.pdfview);
         text1=findViewById(R.id.text1);
         mref.addValueEventListener(new ValueEventListener() {

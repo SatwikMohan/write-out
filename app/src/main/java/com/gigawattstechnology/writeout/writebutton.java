@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,11 +40,12 @@ String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission="
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writebutton);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         articlename=findViewById(R.id.articlename);
         date=findViewById(R.id.date);
         authorname=findViewById(R.id.authorname);
         create=findViewById(R.id.create);
-        radioGroup=findViewById(R.id.radiogroup);
+        //radioGroup=findViewById(R.id.radiogroup);
 
         Calendar calendar=Calendar.getInstance();
         final int year=calendar.get(Calendar.YEAR);
@@ -83,16 +85,16 @@ String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission="
                 sdate=date.getText().toString();
                 sauthorname=authorname.getText().toString();
                 scategory=item;
-                if(discission.equals("Text typing"))
-                {
+                //if(discission.equals("Text typing"))
+               // {
                     Intent i=new Intent(writebutton.this,texttyping.class);
                     i.putExtra("articlename",sarticlename);
                     i.putExtra("date",sdate);
                     i.putExtra("authorname",sauthorname);
                     i.putExtra("category",scategory);
                     startActivity(i);
-                }
-                if(discission.equals("By images"))
+               // }
+                /*if(discission.equals("By images"))
                 {
                     Intent i=new Intent(writebutton.this,byimages.class);
                     i.putExtra("articlename",sarticlename);
@@ -100,14 +102,14 @@ String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission="
                     i.putExtra("authorname",sauthorname);
                     i.putExtra("category",scategory);
                     startActivity(i);
-                }
+                }*/
             }
         });
     }
-    public void check(View view)
+    /*public void check(View view)
     {
         int radioId=radioGroup.getCheckedRadioButtonId();
         radioButton=findViewById(radioId);
         discission=radioButton.getText().toString().trim();
-    }
+    }*/
 }
