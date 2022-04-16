@@ -103,7 +103,19 @@ public class othersarticletab extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                    usersn.add(postSnapshot.getKey());
+                    //usersn.add(postSnapshot.getKey());
+                    DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Articles").child(postSnapshot.getKey()).child("name");
+                    databaseReference1.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            namevalues.add(snapshot.getValue(String.class));
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
 
@@ -112,7 +124,7 @@ public class othersarticletab extends Fragment {
 
             }
         });
-        for(int i=0;i< usersn.size();i++) {
+        /*for(int i=0;i< usersn.size();i++) {
             DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Articles").child(usersn.get(i)).child("name");
             databaseReference1.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
@@ -125,7 +137,7 @@ public class othersarticletab extends Fragment {
 
                 }
             });
-        }
+        }*/
       Set<String> nameset=new HashSet<>(namevalues);
         //Set<String> usersnset=new HashSet<>(usersn);
         recyclerView = view.findViewById(R.id.recyclerview);

@@ -1,15 +1,17 @@
 package com.gigawattstechnology.writeout;
 
+import java.util.ArrayList;
+
 public class Modal {
 
-    private String name;
+    private ArrayList<String> name;
     Modal(){
 
     }
-    public Modal(String name) {
+    public Modal(ArrayList<String> name) {
         this.name = name;
     }
-    public String getName() {
+    public ArrayList<String> getName() {
         return name;
     }
 }

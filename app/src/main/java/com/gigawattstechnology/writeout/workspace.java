@@ -24,7 +24,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.EventListener;
 
-public class workspace extends AppCompatActivity {
+public class workspace extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 MediaPlayer player;
 TabLayout tabLayout;
 TabItem myarticle,othersarticle,myfavorite,myratings;
@@ -47,11 +47,11 @@ TextView profile;
         pageAdapter.addFragment(new myarticletab(),"My Articles");
         pageAdapter.addFragment(new myfavoritetab(),"My Favorites");
         pageAdapter.addFragment(new othersarticletab(),"Other's Articles");
-        pageAdapter.addFragment(new myratingstab(),"My Ratings");
+        pageAdapter.addFragment(new myratingstab(),"User Details");
         viewPager.setAdapter(pageAdapter);
+        tabLayout.setupWithViewPager(viewPager);
         profile.setText(getIntent().getStringExtra("auth"));
         authtransfer.storename(profile.getText().toString());
-
     }
     public void writebutton(View view)
     {
@@ -79,6 +79,21 @@ TextView profile;
     protected  void onStop(){
         super.onStop();
         stopPlayer();
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
     /*public void pdfviewmyarticle(View view){
         String articletext=mytext.getText().toString().replace(" ","").replace("/","");

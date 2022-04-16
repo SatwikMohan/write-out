@@ -7,33 +7,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.internal.ScrimInsetsFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 import adapter.RandomNumListAdapter;
-import adapter.myadaptermy;
 
 
 public class myarticletab extends Fragment  {
@@ -46,7 +35,6 @@ public class myarticletab extends Fragment  {
     long r;
     TextView mytext;
     SearchView searchView;
-    myadaptermy myadaptermy;
     /*RecyclerView recyclerView;
     DatabaseReference database;
     MyAdapter myAdapter;
@@ -58,21 +46,23 @@ public class myarticletab extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_myarticletab, container, false);
         searchView=view.findViewById(R.id.searchView);
 
-        /*recyclerView=view.findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        FirebaseRecyclerOptions<Modal> options =
-                new FirebaseRecyclerOptions.Builder<Modal>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Write OUT"), Modal.class)
-                        .build();
-        myadaptermy=new myadaptermy(options);
-        recyclerView.setAdapter(myadaptermy);*/
-
             DatabaseReference ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename());
             ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                        key.add(postSnapshot.getKey());
+                        //key.add(postSnapshot.getKey());
+                        DatabaseReference v = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename()).child(postSnapshot.getKey()).child("name");
+                        v.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                name.add(snapshot.getValue(String.class));
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+
                     }
                     r= snapshot.getChildrenCount();
                 }
@@ -80,7 +70,7 @@ public class myarticletab extends Fragment  {
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
-            for (i = 0; i < r; i++) {
+            /*for (i = 0; i < r; i++) {
                 DatabaseReference v = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Write OUT").child(authtransfer.givename()).child(key.get(i)).child("name");
                 v.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                     @Override
@@ -91,7 +81,7 @@ public class myarticletab extends Fragment  {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
-            }
+            }*/
         Set<String> s=new HashSet<>(name);
         authtransfer.storearticlepublished(s.size());
         recyclerView = view.findViewById(R.id.recyclerview);

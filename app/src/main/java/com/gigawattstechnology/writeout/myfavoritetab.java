@@ -50,7 +50,20 @@ SearchView searchView;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
               for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                  key.add(postSnapshot.getKey());
+                  //key.add(postSnapshot.getKey());
+                  DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Articles").child(postSnapshot.getKey()).child("favorite").child(authtransfer.givename());
+                  databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                      @Override
+                      public void onDataChange(@NonNull DataSnapshot snapshot) {
+                          favorite.add(snapshot.getValue(String.class));
+
+                      }
+
+                      @Override
+                      public void onCancelled(@NonNull DatabaseError error) {
+
+                      }
+                  });
               }
             }
 
@@ -59,9 +72,8 @@ SearchView searchView;
 
             }
         });
-        for(int i=0;i<key.size();i++){
+        /*for(int i=0;i<key.size();i++){
             DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Articles").child(key.get(i)).child("favorite").child(authtransfer.givename());
-
             databaseReference.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,12 +86,9 @@ SearchView searchView;
 
                 }
             });
-        }
-        /*if(favorite.size()==0){
-            favorite.add("no more articles in here");
-            key.clear();
-            key.add("no more articles in here");
         }*/
+
+
         favorite.removeIf(n -> n.equals("#"));
         if(favorite.size()==0){
             textView.setVisibility(View.VISIBLE);
