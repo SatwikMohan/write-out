@@ -42,16 +42,20 @@
             android:exported="false" />
         <activity
             android:name=".workspace"
-            android:exported="false" />
+            android:exported="false"
+            android:label="WORK SPACE"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".writeout"
             android:exported="false" />
         <activity
             android:name=".login"
-            android:exported="false" />
+            android:exported="false"
+            android:label="LOG IN"/>
         <activity
             android:name=".signup"
-            android:exported="false" />
+            android:exported="false"
+            android:label="SIGN UP"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
