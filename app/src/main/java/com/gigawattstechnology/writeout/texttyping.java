@@ -73,7 +73,7 @@ public class texttyping extends AppCompatActivity {
         category.setText(ca);
         articletext = findViewById(R.id.articletext);
         storageReference = FirebaseStorage.getInstance().getReference();
-        Toast.makeText(texttyping.this,"-SCROLL UP TO PUBLISH-",Toast.LENGTH_LONG).show();
+        Toast.makeText(texttyping.this,"-SCROLL UP TO PUBLISH WHEN FINISHED WRITING-",Toast.LENGTH_LONG).show();
 
     }
     public void publish(View view)

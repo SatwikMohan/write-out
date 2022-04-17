@@ -99,12 +99,13 @@
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="128dp"
-        android:layout_height="34dp"
+        android:layout_width="248dp"
+        android:layout_height="37dp"
         android:background="#E3BBBB"
         android:fontFamily="@font/archivo_black"
-        android:text="SET DATE "
+        android:hint="Click to SET DATE"
         android:textColor="#0B0A0A"
+        android:textColorHint="#000000"
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -87,12 +87,23 @@ String item,scategory="",sarticlename=" ",sdate=" ",sauthorname=" ",discission="
                 scategory=item;
                 //if(discission.equals("Text typing"))
                // {
-                    Intent i=new Intent(writebutton.this,texttyping.class);
-                    i.putExtra("articlename",sarticlename);
-                    i.putExtra("date",sdate);
-                    i.putExtra("authorname",sauthorname);
-                    i.putExtra("category",scategory);
+                if(sarticlename.equals("")){
+                    Toast.makeText(writebutton.this,"Enter Article name",Toast.LENGTH_SHORT).show();
+                }
+                if(sdate.equals("")){
+                    Toast.makeText(writebutton.this,"SET DATE",Toast.LENGTH_SHORT).show();
+                }
+                if(sauthorname.equals("")){
+                    Toast.makeText(writebutton.this,"Enter Author name",Toast.LENGTH_SHORT).show();
+                }
+                if(!sauthorname.equals("") && !sarticlename.equals("") && !sdate.equals("")) {
+                    Intent i = new Intent(writebutton.this, texttyping.class);
+                    i.putExtra("articlename", sarticlename);
+                    i.putExtra("date", sdate);
+                    i.putExtra("authorname", sauthorname);
+                    i.putExtra("category", scategory);
                     startActivity(i);
+                }
                // }
                 /*if(discission.equals("By images"))
                 {
